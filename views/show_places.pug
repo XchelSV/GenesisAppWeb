@@ -1,0 +1,18 @@
+extends layout
+
+block content
+
+    .contanierx
+        .row
+            .col.m4
+                .card
+                  .card-image
+                    img(src='https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&markers=color:red%7C40.718217,-73.998284&key=AIzaSyA7G4kvKuFO9YFRKTkah_KJxurFUbvCA-Q')
+                    
+                    a.btn-floating.halfway-fab.waves-effect.waves-light.red
+                      i.material-icons navigation
+                  .card-content
+                    span.card-title Card Title
+
+    include add_user_place_button
+                    

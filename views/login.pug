@@ -1,0 +1,89 @@
+html
+  head
+    title= title
+    
+    
+    link(href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+    link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css")
+
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+    script(type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js")
+          
+  body
+    
+    style.
+        body{
+            background-color: #26a69a; 
+        }
+        .div_form{
+            background-color: white;   
+        }
+
+        @media only screen and (min-width : 601px) and (max-width : 1260px) {
+        .toast {
+        width: 100%;
+        border-radius: 0;
+        background: #F78181 !important} }
+
+        @media only screen and (min-width : 1261px) {
+        .toast {
+        width: 100%;
+        border-radius: 0;
+        background: #F78181 !important} }
+
+        @media only screen and (min-width : 601px) and (max-width : 1260px) {
+        #toast-container {
+        min-width: 100%;
+        bottom: 90%;
+        top: 0%;
+        right: 0%;
+        left: 0%;} }
+
+        @media only screen and (min-width : 1261px) {
+        #toast-container {
+        min-width: 100%;
+        bottom: 90%;
+        top: 0%;
+        right: 0%;
+        left: 0%; } }
+        
+
+
+    .container.animated.fadeIn()
+        .row(style='margin-top:6%')
+            .col.m4.offset-m4.s10.offset-s1.z-depth-2.div_form
+                .row(style='margin-top:8%')
+                    .col.s10.offset-s1(align='center')
+                        img.responsive-img(src='/images/half-logo.png')
+                .row
+                    .input-field.col.s10.offset-s1()
+                      i.material-icons.prefix account_circle
+                      input#icon_prefix.validate(type='text')
+                      label.regular(for='icon_prefix') Correo Electrónico
+                .row
+                    .input-field.col.s10.offset-s1
+                      i.material-icons.prefix lock_outline
+                      input#icon_prefix.validate(type='password')
+                      label.regular(for='icon_prefix') Contraseña
+                .row(style='margin-top:-6%')
+                    p.col.s10.offset-s1
+                      input#test5(type='checkbox')
+                      label.regular(for='test5') No cerrar sesión
+                .row
+                    .col.s10.offset-s1
+                        button.btn.waves-effect.waves-light.col.s12.teal(type='submit', name='action')
+                          | Acceder
+               
+                .row(style='font-size:80%;margin-top:-20%',align='center')
+                    .col.s12
+                        p.bold
+                            a(href='').black-text
+                                | ¿Olvidaste tu contraseña?
+
+
+      
+
+
+                

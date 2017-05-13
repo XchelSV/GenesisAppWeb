@@ -21,9 +21,9 @@ block content
     /*# sourceMappingURL=style.css.map */
 
   
-  .container-fluid
+  .container
     .row(style='margin-top:3%')
-        .col.s12.m4
+        .col.s12.m6
             .card.hoverable.blue-grey.lighten-5
               .card-image
                 img(src='http://materializecss.com/images/sample-1.jpg')
@@ -32,36 +32,30 @@ block content
               .card-buttons
                 // A small amber button
                 a.btn-floating.btn-large.waves-effect.waves-light.teal
-                  i.material-icons airline_seat_flat
+                  i.material-icons monetization_on
                 // A large red button
                 a.btn-floating.btn-large.waves-effect.waves-light.red
-                  i.material-icons favorite
+                  i.material-icons delete_sweep
               .card-content
                 p
                   | I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
-              
 
-
-
-
-        .col.s12.m4
+        .col.s12.m6
             .card.hoverable.blue-grey.lighten-5
-              //.card-image
+              .card-image
                 img(src='http://materializecss.com/images/sample-1.jpg')
-                
+                span.card-title Card Title
               // A container for floating buttons
               .card-buttons
                 // A small amber button
                 a.btn-floating.btn-large.waves-effect.waves-light.teal
-                  i.material-icons airline_seat_flat
+                  i.material-icons monetization_on
                 // A large red button
                 a.btn-floating.btn-large.waves-effect.waves-light.red
-                  i.material-icons favorite
+                  i.material-icons delete_sweep
               .card-content
-                span.card-title Card Title
                 p
-                  | I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.         
+                  | I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.           
 
-
-
-  include add_post_button
+   
+  include add_user_place_button
