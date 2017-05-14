@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('show_devotionals');
+  res.render('add_place');
 });
 
 module.exports = router;

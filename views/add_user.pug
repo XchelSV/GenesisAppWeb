@@ -1,0 +1,74 @@
+extends layout
+
+block content
+
+    .container
+        .row(style='margin-top:3%')
+            .col.s6.push-s3.center
+                h3 Registrar Misionero
+        .row
+            .col.s12
+                form
+                    .row
+                      .input-field.col.s12
+                        input#name.validate(type='text')
+                        label(for='name') Nombre Completo
+                    .row
+                        .input-field.col.s6
+                          input#pass.validate(type='password')
+                          label(for='pass') Contraseña
+                        .input-field.col.s6
+                          input#pass2.validate(type='password')
+                          label(for='pass2') Repite tu contraseña
+                    .row
+                        .input-field.col.s6
+                          input#birth.validate.datepicker(type='date')
+                          label(for='birth') Fecha de Nacimiento
+                        .input-field.col.s6
+                            select
+                              option(value='', disabled='', selected='') Elige una opción
+                              option(value='0') Misionero
+                              option(value='1') Administrador
+                            label Tipo de Usuario
+                    .row
+                        .input-field.col.s6
+                            select
+                                option(value='', disabled='', selected='') Elige una opción
+                                option(value='0') Lugar 1
+                            label Lugar de Servicio
+                        .input-field.col.s6
+                            input#filled-in-box.filled-in(type='checkbox', checked='checked')
+                            label(for='filled-in-box') Activo
+                    .row
+                        .file-field.input-field
+                          .btn
+                            span Imágen de Perfil
+                            input(type='file')
+                          .file-path-wrapper
+                            input.file-path.validate(type='text')
+
+                    .row
+                        .input-field.col.s12
+                            textarea#textarea1.materialize-textarea(data-length='250')
+                            label(for='textarea1') Biografía
+                    .row
+                        button.btn.waves-effect.waves-light.teal(type='submit', name='action')
+                          | Guardar
+                          i.material-icons.right save
+
+
+
+
+
+    include add_user_place_button
+    
+    script.
+
+      $(document).ready(function() {
+        $('select').material_select();
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15 // Creates a dropdown of 15 years to control year
+          });
+      });
+                     
