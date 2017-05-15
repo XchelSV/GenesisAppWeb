@@ -3,7 +3,9 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "eslint": "./node_modules/.bin/eslint ./src/js/angularControllers/*.js && ./node_modules/.bin/eslint ./routes/*.js",
+    "build": "concat -o ./public/javascripts/angularmodules.min.js ./src/js/angularControllers/*.js && uglifyjs --compress --output ./public/javascripts/angularmodules.min.js -- ./public/javascripts/angularmodules.min.js ",
+    "start": "npm run build && node bin/www"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
@@ -17,5 +19,11 @@
     "redis": "^2.7.1",
     "serve-favicon": "~2.3.0",
     "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "concat": "^1.0.3",
+    "eslint": "^3.19.0",
+    "stylus": "^0.54.5",
+    "uglify-js": "^3.0.5"
   }
 }
