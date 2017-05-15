@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "eslint": "./node_modules/.bin/eslint ./src/js/angularControllers/*.js && ./node_modules/.bin/eslint ./routes/*.js",
-    "build": "concat -o ./public/javascripts/angularmodules.min.js ./src/js/angularControllers/*.js && uglifyjs --compress --output ./public/javascripts/angularmodules.min.js -- ./public/javascripts/angularmodules.min.js ",
+    "build": "concat -o ./public/javascripts/angularmodules.min.js ./src/js/angularControllers/*.js && uglifyjs --compress --output ./public/javascripts/angularmodules.min.js -- ./public/javascripts/angularmodules.min.js && stylus ./src/stylus/styles.styl -o ./public/stylesheets/styles.css",
     "start": "npm run build && node bin/www"
   },
   "dependencies": {

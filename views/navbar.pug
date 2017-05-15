@@ -1,18 +1,20 @@
 
 block navbar
-  nav
+  nav.font-text
     .nav-wrapper.teal
         
         ul#nav-mobile.left.hide-on-med-and-down
           li
-            a(href='sass.html') Inicio
+            a(href='/') Inicio
           li
-            a(href='badges.html') Publicaciones
+            a(href='/social/list') Publicaciones
           li
-            a(href='badges.html') Misioneros
+            a(href='/place/list') Áreas de Trabajo
           li
-            a(href='collapsible.html') Devocionales
+            a(href='/user/list') Misioneros
+          li
+            a(href='/devotional/list') Devocionales
 
         ul.right.hide-on-med-and-down
           li
-            a(href='sass.html') Iniciar Sesión
+            a(href='/login') Iniciar Sesión

@@ -5,24 +5,24 @@ block content
     .container
         .row(style='margin-top:3%')
             .col.s6.push-s3.center
-                h3 Crear Devocional
+                h3.font-title Crear Devocional
         .row
             .col.s12
                 form
-                    .row
+                    .row.font-text
                         .input-field.col.s12
                             input#titulo.validate(type='text')
                             label(for='titulo') Título
-                    .row
+                    .row.font-text
 
                         .input-field.col.s12
                             textarea#textarea1.materialize-textarea(data-length='2500',name='textarea1')
 
-                    .row
+                    .row.font-text
                         .input-field.col.s8
                           input#date.validate.datepicker(type='date')
                           label(for='date') Fecha de Publicación                            
-                    .row
+                    .row.font-text
                         .file-field.input-field.col.s4
                           .btn
                             span Imagen
@@ -41,7 +41,7 @@ block content
                             input(type='file')
                           .file-path-wrapper
                             input.file-path.validate(type='text')
-                    .row
+                    .row.font-title
                         button.btn.waves-effect.waves-light.teal(type='submit', name='action')
                           | Guardar
                           i.material-icons.right save
