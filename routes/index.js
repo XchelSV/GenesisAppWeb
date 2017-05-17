@@ -22,4 +22,18 @@ router.get('/login', function(req, res, next) {
   res.render('login');
 });
 
+router.get('/place/create', function(req, res, next) {
+  res.render('add_place');
+});
+
+router.get('/user/create', function(req, res, next) {
+  res.render('add_user');
+});
+
+router.get('/devotional/create', function(req, res, next) {
+  res.render('add_devotional');
+});
+
+
+
 module.exports = router;

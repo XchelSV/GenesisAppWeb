@@ -1,5 +1,36 @@
 block addPostButton
 
   .fixed-action-btn.horizontal.click-to-toggle
-    a.btn-floating.btn-large.red.tooltipped(data-position='top', data-delay='50', data-tooltip='Publicar')
+    a.btn-floating.btn-large.red.tooltipped(data-position='top', data-delay='50', data-tooltip='Publicar',href='#modal1')
       i.material-icons add
+
+
+  // Modal Structure
+  #modal1.modal
+      .modal-content
+        h4.font-title Crear una Publicación
+        p.font-text ¿En qué estas pensando?
+        
+            .row.font-text
+                .input-field.col.s12
+                    textarea#textarea1.materialize-textarea(data-length='400')
+                    label(for='textarea1') Escribelo aquí
+            .row.font-text
+                .file-field.input-field
+                    .btn
+                        span Imágen/Foto
+                        input(type='file')
+                    .file-path-wrapper
+                        input.file-path.validate(type='text')
+            .row.font-title
+                .col.s4.push-s8
+                    button.modal-action.modal-close.btn.waves-effect.waves-light.teal(href='#')| Publicar
+                        i.material-icons.right send
+
+            
+
+  script.
+    $(document).ready(function(){
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+    });
