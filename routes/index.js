@@ -65,8 +65,9 @@ router.post('/authenticate', function(req,res,next){
 	    else{
 	    	if(APIResponse.statusCode == 200){
 	    		//console.log(JSON.parse(APIData.toString()));
-	    		console.log('New Sesion '+APIData.toString());
+	    		console.log('New Session '+APIData.toString());
 	    		req.session.token = APIData.toString();
+	    		res.cookie('session', APIData.toString());
 	    		res.sendStatus(200);
 	    	}
 	    }
