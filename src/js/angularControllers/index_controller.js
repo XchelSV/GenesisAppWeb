@@ -1,34 +1,50 @@
 app.controller('indexController',function  ($scope, $http, $cookies, fileUpload, uuid, localStorageService) {
         
-        $scope.session = function(){
-            if($cookies.session != undefined){
-                return true;
+    $scope.session = function(){
+        if($cookies.session != undefined){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    if ($cookies.session == undefined) {
+        if ($cookies.temporalSession == undefined) {
+            $cookies.temporalSession = uuid.v4();
+        }
+    }
+    $scope.post = function (){
+        if($scope.postText == undefined && $scope.file == undefined){}
+        else{
+            if($scope.postText == undefined){
+                $scope.postText = '';
+            }
+            if ($scope.file != undefined){
+                var date = new Date();
+                var uploadUrl = 'http://localhost:4000/api/post/'+$cookies.session;
+                var NewPost = fileUpload.uploadFileToUrl($scope.file,$scope.postText, true,false,false ,uploadUrl);
+                $scope.postText = undefined;
+                $scope.file = undefined;
+                $scope.labelFile = undefined;
             }
             else{
-                return false;
+                var date = new Date();
+                var uploadUrl = 'http://localhost:4000/api/post/'+$cookies.session;
+                var NewPost = fileUpload.uploadFileToUrl(undefined, $scope.postText, false,false,false ,uploadUrl);
+                $scope.postText = undefined;
+                $scope.file = undefined;
+                $scope.labelFile = undefined;
             }
         }
+    }
 
-
-        $scope.id = decodeURIComponent($cookies.id);
-        $scope.name = decodeURIComponent($cookies.name);
-        $scope.day = decodeURIComponent($cookies.day);
-        $scope.month = decodeURIComponent($cookies.month);
-        $scope.servicePlace = decodeURIComponent($cookies.servicePlace);
-        $scope.biography = decodeURIComponent($cookies.biography);
-
-        if ($cookies.session == undefined) {
-            if ($cookies.temporalSession == undefined) {
-                $cookies.temporalSession = uuid.v4();
-            }
-        }
         
 
         $scope.posts = [];
         $scope.numberOfPosts;
 
 
-        $http.get('/posts').success(function (data, status, headers, config){
+        /*$http.get('/posts').success(function (data, status, headers, config){
             
             $scope.posts = data;
             $scope.numberOfPosts = data.length;
@@ -66,7 +82,7 @@ app.controller('indexController',function  ($scope, $http, $cookies, fileUpload,
         })
         .error(function (){
             alert('AJAX posts erros');
-        });
+        });*/
 
         $scope.morePosts = function (){
 
@@ -311,14 +327,14 @@ app.controller('indexController',function  ($scope, $http, $cookies, fileUpload,
 
         }
 
-        $('#image-cropper').cropit({
+        /*$('#image-cropper').cropit({
           imageBackground: true,
           imageBackgroundBorderWidth: 15 // Width of background border
         });
         $('.download-btn').click(function() {
           var imageData = $('#image-cropper').cropit('export');
           window.open(imageData);
-        });
+        });*/
 
         $scope.crop_div = false;
         $scope.show_img = function(){
@@ -337,127 +353,6 @@ app.controller('indexController',function  ($scope, $http, $cookies, fileUpload,
         }
 
 
-        $scope.post = function (){
 
-
-            var validate_img = $('#image-cropper').cropit('export');
-            if($scope.postText == undefined && (validate_img == undefined || $scope.crop_div == false)){
-
-            }
-            else{
-
-                if($scope.postText == undefined){
-                    $scope.postText = '';
-                }
-
-                if (validate_img != undefined && $scope.crop_div == true){
-
-                    var date = new Date();
-                    var file = $('#image-cropper').cropit('export');
-                    //var uploadUrl = '/posts';
-                    //var NewPost = fileUpload.uploadFileToUrl(file,$scope.id, $scope.name,$scope.postText, true,false,false ,uploadUrl,$scope.posts);
-
-                    var post = {file:file,id:$scope.id, name:$scope.name, body:$scope.postText, img:true, video:false, audio:false, date: date}
-                    $http.post('/posts',post).success(function (data, status, headers, config){
-                    
-                        
-                        var postModal = angular.element(document.querySelector('#postModal'));
-                        postModal.modal('hide');
-
-                        $scope.postText = '';
-                        $scope.myFile = undefined;
-                        $scope.crop_div = false;
-                        $scope.posts.unshift(data);
-
-                        $scope.numberOfPosts++;
-
-                    })
-                    .error(function (){
-                        alert('AJAX error in post');
-                    });
-
-
-                    
-
-                }else{
-
-                    var date = new Date();
-                    var file = undefined;
-                    //var uploadUrl = '/posts';
-                    //var NewPost = fileUpload.uploadFileToUrl(file,$scope.id,$scope.name, $scope.postText, false,false,false ,uploadUrl,$scope.posts);
-
-                    var post = {file:file,id:$scope.id, name:$scope.name, body:$scope.postText, img:false, video:false, audio:false, date: date}
-                    $http.post('/posts',post).success(function (data, status, headers, config){
-                                                
-                        var postModal = angular.element(document.querySelector('#postModal'));
-                        postModal.modal('hide');
-
-                        $scope.postText = '';
-                        $scope.myFile = undefined;
-                        $scope.crop_div = false;
-                        $scope.posts.unshift(data);
-
-                        $scope.numberOfPosts++;
-
-                    })
-                    .error(function (){
-                        alert('AJAX error in post');
-                    });
-
-                }
-            }
-
-        }
-
-        $('#file1').change(function() {
-
-            if($('#file1').val()){
-                $('#btn_file1').removeClass('btn-primary');
-                $('#btn_file1').removeClass('btn-success');
-                $('#btn_file1').removeClass('btn-danger');
-                $('#btn_file1').addClass('btn-success');
-            }
-            else{
-                $('#btn_file1').removeClass('btn-primary');
-                $('#btn_file1').removeClass('btn-success');
-                $('#btn_file1').removeClass('btn-danger');
-                $('#btn_file1').addClass('btn-danger');
-            }
-
-        }); 
-
-        $('#file2').change(function() {
-
-            if($('#file2').val()){
-                $('#btn_file2').removeClass('btn-primary');
-                $('#btn_file2').removeClass('btn-success');
-                $('#btn_file2').removeClass('btn-danger');
-                $('#btn_file2').addClass('btn-success');
-            }
-            else{
-                $('#btn_file2').removeClass('btn-primary');
-                $('#btn_file2').removeClass('btn-success');
-                $('#btn_file2').removeClass('btn-danger');
-                $('#btn_file2').addClass('btn-danger');
-            }
-
-        }); 
-
-        $('#file3').change(function() {
-
-            if($('#file3').val()){
-                $('#btn_file3').removeClass('btn-primary');
-                $('#btn_file3').removeClass('btn-success');
-                $('#btn_file3').removeClass('btn-danger');
-                $('#btn_file3').addClass('btn-success');
-            }
-            else{
-                $('#btn_file3').removeClass('btn-primary');
-                $('#btn_file3').removeClass('btn-success');
-                $('#btn_file3').removeClass('btn-danger');
-                $('#btn_file3').addClass('btn-danger');
-            }
-
-        });
 
     });

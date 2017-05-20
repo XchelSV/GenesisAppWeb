@@ -43,9 +43,10 @@ router.get('/logout', function(req, res, next) {
 	   else{
 	   	if(APIResponse.statusCode == 200){
 		   	req.session.destroy(function(err){
+		   		res.clearCookie('session');
 		   		res.redirect('/');
 		   	})
-		}	
+		}
 	   }
   });
 });
@@ -65,6 +66,7 @@ router.post('/authenticate', function(req,res,next){
 	    else{
 	    	if(APIResponse.statusCode == 200){
 	    		//console.log(JSON.parse(APIData.toString()));
+	    		res.clearCookie('temporalSession', { path: '/social' });
 	    		console.log('New Session '+APIData.toString());
 	    		req.session.token = APIData.toString();
 	    		res.cookie('session', APIData.toString());

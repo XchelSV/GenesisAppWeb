@@ -1,6 +1,6 @@
 block addPostButton
 
-  .fixed-action-btn.horizontal.click-to-toggle
+  .fixed-action-btn.horizontal.click-to-toggle(ng-if='session()')
     a.btn-floating.btn-large.red.tooltipped(data-position='top', data-delay='50', data-tooltip='Publicar',href='#modal1')
       i.material-icons add
 
@@ -10,21 +10,21 @@ block addPostButton
       .modal-content
         h4.font-title Crear una Publicación
         p.font-text ¿En qué estas pensando?
-        
+          form()
             .row.font-text
                 .input-field.col.s12
-                    textarea#textarea1.materialize-textarea(data-length='400')
+                    textarea#textarea1.materialize-textarea(data-length='400',ng-model='postText')
                     label(for='textarea1') Escribelo aquí
             .row.font-text
                 .file-field.input-field
                     .btn
                         span Imágen/Foto
-                        input(type='file')
+                        input(type='file',file-model='file')
                     .file-path-wrapper
-                        input.file-path.validate(type='text')
+                        input.file-path.validate(type='text',ng-model='labelFile')
             .row.font-title
                 .col.s4.push-s8
-                    button.modal-action.modal-close.btn.waves-effect.waves-light.teal(href='#')| Publicar
+                    button.btn.waves-effect.waves-light.teal(ng-click='post()')| Publicar
                         i.material-icons.right send
 
             

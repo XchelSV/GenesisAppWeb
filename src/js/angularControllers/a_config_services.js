@@ -46,11 +46,9 @@ var app = angular.module('Genesis',['ngRoute', 'ngCookies','angular-uuid','Local
     });
 
     app.service('fileUpload', ['$http', function ($http) {
-        this.uploadFileToUrl = function(file,id,name,text,img,video,audio, uploadUrl,posts){
+        this.uploadFileToUrl = function(file,text,img,video,audio, uploadUrl){
             var fd = new FormData();
-            fd.append('file', file);
-            fd.append('id',id);
-            fd.append('name',name)
+            fd.append('image', file);
             fd.append('body',text);
             fd.append('img',img);
             fd.append('video',video);
@@ -64,8 +62,6 @@ var app = angular.module('Genesis',['ngRoute', 'ngCookies','angular-uuid','Local
                 headers: {'Content-Type': undefined}
             })
             .success(function(data, status, headers, config){
-
-                posts.unshift(data);
 
             })
             .error(function(){
