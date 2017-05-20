@@ -22,46 +22,26 @@ block content
 
   
   .container-fluid(ng-controller='indexController')
-    .row(style='margin-top:3%')
-        .col.s12.m4
-            .card.hoverable.blue-grey.lighten-5
-              .card-image
-                img(src='http://materializecss.com/images/sample-1.jpg')
-                span.card-title.font-title Juan Pérez de Gante
-              // A container for floating buttons
-              .card-buttons
-                // A small amber button
-                a.btn-floating.btn-large.waves-effect.waves-light.teal.tooltipped(data-position="top" data-delay="50" data-tooltip="10")
-                  i.material-icons airline_seat_flat
-                // A large red button
-                a.btn-floating.btn-large.waves-effect.waves-light.red.tooltipped(data-position="top" data-delay="50" data-tooltip="10")
-                  i.material-icons favorite
-              .card-content
-                p.font-text
-                  | I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
-              
-
-
-
-
-        .col.s12.m4
-            .card.hoverable.blue-grey.lighten-5
-              //.card-image
-                img(src='http://materializecss.com/images/sample-1.jpg')
-                
-              // A container for floating buttons
-              .card-buttons
-                // A small amber button
-                a.btn-floating.btn-large.waves-effect.waves-light.teal.tooltipped(data-position="top" data-delay="50" data-tooltip="10")
-                  i.material-icons airline_seat_flat
-                // A large red button
-                a.btn-floating.btn-large.waves-effect.waves-light.red.tooltipped(data-position="top" data-delay="50" data-tooltip="10")
-                  i.material-icons favorite
-              .card-content
-                span.card-title.font-title Juan Pérez de Gante
-                p.font-text
-                  | I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.         
-
-
+    .row
+      .col.s12.cards-container
+        .margin(style='margin-top:10%')
+          each post in posts
+            .colx
+                .card.hoverable.blue-grey.lighten-5
+                  if (post.img==true)
+                    .card-image
+                      img(src='http://localhost:4000/api/post/img/'+post._id)
+                      
+                  // A container for floating buttons
+                  .card-buttons
+                    // A small amber button
+                    a.btn-floating.btn-large.waves-effect.waves-light.teal.tooltipped(data-position="top" data-delay="50" data-tooltip="10")
+                      i.material-icons airline_seat_flat
+                    // A large red button
+                    a.btn-floating.btn-large.waves-effect.waves-light.red.tooltipped(data-position="top" data-delay="50" data-tooltip="10")
+                      i.material-icons favorite
+                  .card-content
+                    span.card-title.font-title=post.userName
+                    p.font-text=post.body     
 
     include add_post_button

@@ -11,7 +11,9 @@ router.get('/', function(req,res,next){
 });
 
 router.get('/social/list', function(req, res, next) {
-  res.render('index');
+	APIClient.get("http://localhost:4000/api/post", function (APIData, APIResponse) {
+		res.render('index', {posts: APIData});
+	})	
 });
 
 router.get('/devotional/list', function(req, res, next) {
@@ -33,22 +35,6 @@ router.get('/login', function(req, res, next) {
   else{
   	res.render('login');
   }
-});
-
-router.get('/logout', function(req, res, next) {
-  APIClient.get("http://localhost:4000/api/logout/"+req.session.token, function (APIData, APIResponse) {
-	   if(APIResponse.statusCode == 401){
-	   		res.sendStatus(404);
-	   }
-	   else{
-	   	if(APIResponse.statusCode == 200){
-		   	req.session.destroy(function(err){
-		   		res.clearCookie('session');
-		   		res.redirect('/');
-		   	})
-		}
-	   }
-  });
 });
 
 router.post('/authenticate', function(req,res,next){
@@ -77,6 +63,22 @@ router.post('/authenticate', function(req,res,next){
 	});					
 
 })
+
+router.get('/logout', function(req, res, next) {
+  APIClient.get("http://localhost:4000/api/logout/"+req.session.token, function (APIData, APIResponse) {
+	   if(APIResponse.statusCode == 401){
+	   		res.sendStatus(404);
+	   }
+	   else{
+	   	if(APIResponse.statusCode == 200){
+		   	req.session.destroy(function(err){
+		   		res.clearCookie('session');
+		   		res.redirect('/');
+		   	})
+		}
+	   }
+  });
+});
 
 router.get('/place/create', function(req, res, next) {
   res.render('add_place');
