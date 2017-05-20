@@ -26,6 +26,7 @@ app.controller('indexController',function  ($scope, $http, $cookies, fileUpload,
                 $scope.postText = undefined;
                 $scope.file = undefined;
                 $scope.labelFile = undefined;
+                $('#modal1').modal('close');
             }
             else{
                 var date = new Date();
@@ -34,6 +35,7 @@ app.controller('indexController',function  ($scope, $http, $cookies, fileUpload,
                 $scope.postText = undefined;
                 $scope.file = undefined;
                 $scope.labelFile = undefined;
+                $('#modal1').modal('close');
             }
         }
     }
