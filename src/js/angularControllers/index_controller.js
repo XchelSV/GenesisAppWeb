@@ -8,11 +8,7 @@ app.controller('indexController',function  ($scope, $http, $cookies, fileUpload,
             return false;
         }
     }
-    if ($cookies.session == undefined) {
-        if ($cookies.temporalSession == undefined) {
-            $cookies.temporalSession = uuid.v4();
-        }
-    }
+    
     $scope.post = function (){
         if($scope.postText == undefined && $scope.file == undefined){}
         else{
@@ -40,51 +36,42 @@ app.controller('indexController',function  ($scope, $http, $cookies, fileUpload,
         }
     }
 
+    $scope.like = function(event){
         
+        var post_id = event.delegateTarget.id;
+        $http.get('/post/like/'+post_id).success(function (data, status, headers, config){ 
+            if(status == 202){
+                event.delegateTarget.className = "btn-floating btn-large waves-effect waves-light red tooltipped";
+            }
+            if(status == 200){
+                event.delegateTarget.className = "btn-floating btn-large waves-effect waves-light black tooltipped";
+            }
+        })
+        .error(function (){
+            alert('AJAX error in like Post');        
+        });
+
+    }        
+    $scope.pray = function(event){
+        
+        var post_id = event.delegateTarget.id;
+        $http.get('/post/pray/'+post_id).success(function (data, status, headers, config){ 
+            if(status == 202){
+                event.delegateTarget.className = "btn-floating btn-large waves-effect waves-light teal tooltipped";
+            }
+            if(status == 200){
+                event.delegateTarget.className = "btn-floating btn-large waves-effect waves-light black tooltipped";
+            }
+        })
+        .error(function (){
+            alert('AJAX error in pray Post');        
+        });
+
+    }        
 
         $scope.posts = [];
         $scope.numberOfPosts;
 
-
-        /*$http.get('/posts').success(function (data, status, headers, config){
-            
-            $scope.posts = data;
-            $scope.numberOfPosts = data.length;
-
-            for (var i = 0; i < data.length; i++) {
-                for (var j = 0; j < data[i].like.length; j++) {
-                    if ($cookies.session) {
-                        if($cookies.session == data[i].like[j]){
-                            localStorageService.set('like'+data[i]._id,true);
-                        }
-                    }
-                    else{
-                        if($cookies.temporalSession == data[i].like[j]){
-                            localStorageService.set('like'+data[i]._id,true);
-                        }
-                    }
-                }
-
-                for (var k = 0; k < data[i].pray4You.length; k++) {
-                    if ($cookies.session) {
-                        
-                        if($cookies.session == data[i].pray4You[k]){
-                            localStorageService.set('pray'+data[i]._id,true);
-                        }
-                    }
-                    else{
-                        
-                        if($cookies.temporalSession == data[i].pray4You[k]){
-                            localStorageService.set('pray'+data[i]._id,true);
-                        }
-                    }
-                }
-            }
-
-        })
-        .error(function (){
-            alert('AJAX posts erros');
-        });*/
 
         $scope.morePosts = function (){
 
@@ -192,169 +179,5 @@ app.controller('indexController',function  ($scope, $http, $cookies, fileUpload,
                 });
 
         }
-
-        $scope.showLikeTooltip = function (button_id){
-
-            var tooltip = angular.element(document.querySelector('#like'+button_id));
-            tooltip.tooltip('show');
-            
-        }
-
-        $scope.showPrayTooltip = function (button_id){
-
-            var tooltip = angular.element(document.querySelector('#pray'+button_id));
-            tooltip.tooltip('show');
-            
-        }
-
-        $scope.clearStorage = function (){
-            localStorageService.clearAll();
-        }
-
-        $scope.getLikeButtonStatus = function (postId){
-
-            return localStorageService.get('like'+postId);
-
-        }
-
-        $scope.getPrayButtonStatus = function (postId){
-
-            return localStorageService.get('pray'+postId);
-
-        }
-
-        $scope.like = function (postId){
-
-            
-            if ($cookies.session){
-
-                var userId = $cookies.session;
-                $http.post('/post/like',{userId:userId,postId:postId}).success(function (data, status, headers, config){
-                    
-                    if (status == 200){
-                        var likeModal = angular.element(document.querySelector('#likeModal'));
-                        likeModal.modal('show');
-
-                        var likeButton = angular.element(document.querySelector('#like'+postId));
-                        
-                        localStorageService.set('like'+postId,true);
-                    }
-
-                    if (status == 202){
-                        localStorageService.set('like'+postId,false);
-                    }
-                    
-                })
-                .error(function (){
-                    alert('AJAX error in post like');
-                    
-                });
-
-            }
-
-            if ($cookies.temporalSession){
-
-                var userId = $cookies.temporalSession;
-                $http.post('/post/like',{userId:userId,postId:postId}).success(function (data, status, headers, config){
-                    
-                    if (status == 200){
-                        var likeModal = angular.element(document.querySelector('#likeModal'));
-                        likeModal.modal('show');
-
-                        var likeButton = angular.element(document.querySelector('#like'+postId));
-                        localStorageService.set('like'+postId,true);
-                    }
-                    if (status == 202){
-                        localStorageService.set('like'+postId,false);
-                    }
-
-                })
-                .error(function (){
-                    alert('AJAX error in post like');
-                    
-                });
-
-            }
-
-        }
-
-        $scope.pray4You = function (postId){
-
-            
-            if ($cookies.session){
-
-                var userId = $cookies.session;
-                $http.post('/post/pray',{userId:userId,postId:postId}).success(function (data, status, headers, config){
-                    
-                    if (status == 200){
-                        var prayModal = angular.element(document.querySelector('#prayModal'));
-                        prayModal.modal('show');
-
-                        var prayButton = angular.element(document.querySelector('#pray'+postId));
-                        localStorageService.set('pray'+postId,true);
-                    }
-                    if (status == 202){
-                        localStorageService.set('pray'+postId,false);   
-                    }
-
-                })
-                .error(function (){
-                    alert('AJAX error in post like');
-                });
-
-            }
-
-            if ($cookies.temporalSession){
-
-                var userId = $cookies.temporalSession;
-                $http.post('/post/pray',{userId:userId,postId:postId}).success(function (data, status, headers, config){
-                    
-                    if (status == 200){
-                        var prayModal = angular.element(document.querySelector('#prayModal'));
-                        prayModal.modal('show');
-
-                        var prayButton = angular.element(document.querySelector('#pray'+postId));
-                        localStorageService.set('pray'+postId,true);
-                    }
-                    if (status == 202){
-                        localStorageService.set('pray'+postId,false);       
-                    }
-
-                })
-                .error(function (){
-                    alert('AJAX error in post like');
-                });
-
-            }
-
-        }
-
-        /*$('#image-cropper').cropit({
-          imageBackground: true,
-          imageBackgroundBorderWidth: 15 // Width of background border
-        });
-        $('.download-btn').click(function() {
-          var imageData = $('#image-cropper').cropit('export');
-          window.open(imageData);
-        });*/
-
-        $scope.crop_div = false;
-        $scope.show_img = function(){
-
-                $scope.myFile = undefined;
-                $scope.crop_div = true;
-                //console.log($('#image-cropper').cropit('export'));
-
-        }
-
-        $scope.reset_img = function (){
-
-            $scope.myFile = undefined;
-            $scope.crop_div = false;
-
-        }
-
-
-
 
     });

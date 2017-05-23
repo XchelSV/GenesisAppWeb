@@ -7,13 +7,96 @@ var APIClient = new Client();
 
 /* GET home page. */
 router.get('/', function(req,res,next){
-	res.redirect('/social/list');
+	res.render('home');
 });
 
 router.get('/social/list', function(req, res, next) {
 	APIClient.get("http://localhost:4000/api/post", function (APIData, APIResponse) {
-		res.render('index', {posts: APIData});
+		if (req.session.token){
+			APIClient.get("http://localhost:4000/api/session/user/id/"+req.session.token, function (data, APIResponse) {
+				res.render('index', {posts: APIData, session: data});	
+			})
+		}
+		else{
+			res.render('index', {posts: APIData, session: req.cookies.temporalSession});	
+
+		}
+		
 	})	
+});
+
+router.get('/post/like/:post_id', function(req,res,next){
+	var post_id = req.params.post_id;
+	console.log(req.cookies.temporalSession);
+	if(req.session.token){
+		APIClient.get("http://localhost:4000/api/session/user/id/"+req.session.token, function (data, APIResponse) {
+			var args = {
+			    data: {phoneId:data.toString() , postId:post_id},
+				headers: { "Content-Type": "application/json" }
+			};	
+		
+			APIClient.post("http://localhost:4000/api/post/like", args, function (APIData, APIResponse) {
+				if(APIResponse.statusCode == 200){
+					res.sendStatus(200);	
+				}
+				else{
+					res.sendStatus(202);	
+				}			
+			})
+		})
+	}
+	else{
+		
+		var args = {
+			data: {phoneId:req.cookies.temporalSession , postId:post_id},
+			headers: { "Content-Type": "application/json" }
+		};
+
+		APIClient.post("http://localhost:4000/api/post/like", args, function (APIData, APIResponse) {
+			if(APIResponse.statusCode == 200){
+				res.sendStatus(200);	
+			}
+			else{
+				res.sendStatus(202);	
+			}
+		})
+	}
+});
+
+router.get('/post/pray/:post_id', function(req,res,next){
+	var post_id = req.params.post_id;
+	if(req.session.token){
+		APIClient.get("http://localhost:4000/api/session/user/id/"+req.session.token, function (data, APIResponse) {
+			var args = {
+			    data: {phoneId:data.toString() , postId:post_id},
+				headers: { "Content-Type": "application/json" }
+			};	
+		
+			APIClient.post("http://localhost:4000/api/post/pray", args, function (APIData, APIResponse) {
+				if(APIResponse.statusCode == 200){
+					res.sendStatus(200);	
+				}
+				else{
+					res.sendStatus(202);	
+				}			
+			})
+	})
+	}
+	else{
+		
+		var args = {
+			data: {phoneId:req.cookies.temporalSession , postId:post_id},
+			headers: { "Content-Type": "application/json" }
+		};		
+		APIClient.post("http://localhost:4000/api/post/pray", args, function (APIData, APIResponse) {
+			if(APIResponse.statusCode == 200){
+				res.sendStatus(200);	
+			}
+			else{
+				res.sendStatus(202);	
+			}
+		})
+	}
 });
 
 router.get('/devotional/list', function(req, res, next) {
@@ -52,7 +135,7 @@ router.post('/authenticate', function(req,res,next){
 	    else{
 	    	if(APIResponse.statusCode == 200){
 	    		//console.log(JSON.parse(APIData.toString()));
-	    		res.clearCookie('temporalSession', { path: '/social' });
+	    		res.clearCookie('temporalSession');
 	    		console.log('New Session '+APIData.toString());
 	    		req.session.token = APIData.toString();
 	    		res.cookie('session', APIData.toString());

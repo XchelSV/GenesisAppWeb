@@ -1,0 +1,61 @@
+extends layout
+
+block content
+
+  style.
+
+    .card .card-buttons {
+      position: relative;
+      top: -5px;
+      text-align: right;
+      padding-right: 20px;
+      margin-bottom: -20px; }
+      .card .card-buttons .btn-floating {
+        margin-left: 10px;
+        margin-top: -18.5px; }
+        .card .card-buttons .btn-floating.btn-large {
+          margin-top: -27.75px; }
+    .card.small .card-buttons, .card.medium .card-buttons, .card.large .card-buttons {
+      top: 0; }
+
+    /*# sourceMappingURL=style.css.map */
+
+  
+  .containerx(ng-controller='homeController')
+    .row(style='margin-top:1%')
+        .col.s12.m4
+            .card.hoverable.blue-grey.lighten-5
+              .card-image
+                img(src='/images/half-logo.png')
+              // A container for floating buttons
+              .card-buttons
+                // A small amber button
+                a.btn-floating.btn-large.waves-effect.waves-light.teal
+                  i.material-icons navigation
+                // A large red button
+                a.btn-floating.btn-large.waves-effect.waves-light.red
+                  i.material-icons delete_sweep
+              .card-content
+                span.card-title.font-title Card Title
+                p.font-text
+                  | I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+
+        .col.s12.m4
+            .card.hoverable.blue-grey.lighten-5
+              .card-image
+                img(src='/images/half-logo.png')
+              // A container for floating buttons
+              .card-buttons
+                // A small amber button
+                a.btn-floating.btn-large.waves-effect.waves-light.teal
+                  i.material-icons navigation
+                // A large red button
+                a.btn-floating.btn-large.waves-effect.waves-light.red
+                  i.material-icons delete_sweep
+              .card-content
+                span.card-title.font-title Card Title
+                p.font-text
+                  | I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.           
+
+   
+  include add_user_place_button

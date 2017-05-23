@@ -25,7 +25,10 @@ block content
     .row
       .col.s12.cards-container
         .margin(style='margin-top:10%')
-          each post in posts
+          script.
+            var posts = "#{posts}";
+
+          each post,index in posts
             .colx
                 .card.hoverable.blue-grey.lighten-5
                   if (post.img==true)
@@ -35,11 +38,32 @@ block content
                   // A container for floating buttons
                   .card-buttons
                     // A small amber button
-                    a.btn-floating.btn-large.waves-effect.waves-light.teal.tooltipped(data-position="top" data-delay="50" data-tooltip="10")
-                      i.material-icons airline_seat_flat
-                    // A large red button
-                    a.btn-floating.btn-large.waves-effect.waves-light.red.tooltipped(data-position="top" data-delay="50" data-tooltip="10")
-                      i.material-icons favorite
+                    - var pray_register = true
+                    each pray in post.pray4You
+                      if (pray == session)
+                        - pray_register = false
+                        break
+                    
+                    if (pray_register)
+                      a.btn-floating.btn-large.waves-effect.waves-light.teal.tooltipped(id=post._id ,data-position="top" data-delay="50" data-tooltip=post.pray4You.length , ng-click="pray($event)")
+                        i.material-icons airline_seat_flat
+                    else
+                      a.btn-floating.btn-large.waves-effect.waves-light.black.tooltipped(id=post._id ,data-position="top" data-delay="50" data-tooltip=post.pray4You.length , ng-click="pray($event)")
+                        i.material-icons airline_seat_flat
+
+                    - var like_register = true
+                    each like in post.like
+                      if (like == session)
+                        - like_register = false
+                        break
+                    
+                    if (like_register)
+                      a.btn-floating.btn-large.waves-effect.waves-light.red.tooltipped(id=post._id ,data-position="top" data-delay="50" data-tooltip=post.like.length , data-ng-click="like($event)")
+                        i.material-icons favorite
+                    else
+                      a.btn-floating.btn-large.waves-effect.waves-light.black.tooltipped(id=post._id ,data-position="top" data-delay="50" data-tooltip=post.like.length , data-ng-click="like($event)")
+                        i.material-icons favorite
+
                   .card-content
                     span.card-title.font-title=post.userName
                     p.font-text=post.body     
