@@ -104,7 +104,9 @@ router.get('/devotional/list', function(req, res, next) {
 });
 
 router.get('/place/list', function(req, res, next) {
-  res.render('show_places');
+  APIClient.get("http://localhost:4000/api/place", function (APIData, APIResponse) {
+  	res.render('show_places',{places:APIData});	
+  })
 });
 
 router.get('/user/list', function(req, res, next) {
@@ -164,15 +166,33 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.get('/place/create', function(req, res, next) {
-  res.render('add_place');
+  if(req.session.token){
+  	res.render('add_place');	
+  }
+  else{
+  	res.sendStatus(404);
+  }
+  
 });
 
 router.get('/user/create', function(req, res, next) {
-  res.render('add_user');
+  if(req.session.token){
+  	res.render('add_user');
+  }	
+  else{
+  	res.sendStatus(404);
+  }
+  
 });
 
 router.get('/devotional/create', function(req, res, next) {
-  res.render('add_devotional');
+  if(req.session.token){
+	res.render('add_devotional');	
+  }	
+  else{
+  	res.sendStatus(404);
+  }
+
 });
 
 

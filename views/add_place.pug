@@ -126,14 +126,13 @@ html
             $('#btn-save').click(function(){
                 $.ajax({
                   method: "POST",
-                  url: "/place",
+                  url: "http://localhost:4000/api/place",
                   data: {place_id:place.place_id,location:[place.geometry.location.lat(),place.geometry.location.lng()],formatted_address:place.formatted_address}
-                })
-                .done(function( msg ) {
-                    alert( "Data Saved: " + msg );
-                    window.location = "/showUsers";
-
-                });
+                ,success: function(result){
+                    alert( "Data Saved: " + result );
+                    window.location = "/place/list";
+                }})
+                
           })
           console.log(place);
           if (!place.geometry) {
