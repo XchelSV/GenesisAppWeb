@@ -1,15 +1,15 @@
 block addAdminButton
-
-  .fixed-action-btn.horizontal.click-to-toggle(ng-if='session()')
-    a.btn-floating.btn-large.red.tooltipped(data-position='top', data-delay='50', data-tooltip='Agregar Nuevo')
-      i.material-icons add
-    ul
-      li
-        a.btn-floating.red.accent-1.tooltipped(data-position='top', data-delay='50', data-tooltip='Agregar Lugar', href='/place/create')
-          i.material-icons location_on
-      li
-        a.btn-floating.red.accent-1.tooltipped(data-position='top', data-delay='50', data-tooltip='Agregar Misionero', href='/user/create')
-          i.material-icons face
-      li
-        a.btn-floating.red.accent-1.tooltipped(data-position='top', data-delay='50', data-tooltip='Agregar Devocional', href='/devotional/create')
-          i.material-icons subject
+  if (type)
+    .fixed-action-btn.horizontal.click-to-toggle
+      a.btn-floating.btn-large.red.tooltipped(data-position='top', data-delay='50', data-tooltip='Agregar Nuevo')
+        i.material-icons add
+      ul
+        li
+          a.btn-floating.red.accent-1.tooltipped(data-position='top', data-delay='50', data-tooltip='Agregar Lugar', href='/place/create')
+            i.material-icons location_on
+        li
+          a.btn-floating.red.accent-1.tooltipped(data-position='top', data-delay='50', data-tooltip='Agregar Misionero', href='/user/create')
+            i.material-icons face
+        li
+          a.btn-floating.red.accent-1.tooltipped(data-position='top', data-delay='50', data-tooltip='Agregar Devocional', href='/devotional/create')
+            i.material-icons subject

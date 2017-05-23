@@ -7,6 +7,7 @@ var APIClient = new Client();
 
 /* GET home page. */
 router.get('/', function(req,res,next){
+	
 	res.render('home');
 });
 
@@ -100,17 +101,19 @@ router.get('/post/pray/:post_id', function(req,res,next){
 });
 
 router.get('/devotional/list', function(req, res, next) {
-  res.render('show_devotionals');
+  res.render('show_devotionals',{type:req.session.type});
 });
 
 router.get('/place/list', function(req, res, next) {
   APIClient.get("http://localhost:4000/api/place", function (APIData, APIResponse) {
-  	res.render('show_places',{places:APIData});	
+  	res.render('show_places',{places:APIData,type:req.session.type});	
   })
 });
 
 router.get('/user/list', function(req, res, next) {
-  res.render('show_users');
+	APIClient.get("http://localhost:4000/api/user", function (APIData, APIResponse) {
+		res.render('show_users',{users:APIData,type:req.session.type});
+	})
 });
 
 router.get('/login', function(req, res, next) {
@@ -136,12 +139,17 @@ router.post('/authenticate', function(req,res,next){
 	    }
 	    else{
 	    	if(APIResponse.statusCode == 200){
-	    		//console.log(JSON.parse(APIData.toString()));
-	    		res.clearCookie('temporalSession');
-	    		console.log('New Session '+APIData.toString());
-	    		req.session.token = APIData.toString();
-	    		res.cookie('session', APIData.toString());
-	    		res.sendStatus(200);
+	    		
+				APIClient.get("http://localhost:4000/api/session/user/id/"+APIData.toString(), function (data, APIResponse) {
+					APIClient.get("http://localhost:4000/api/user/profile/"+data, function (UserData, APIResponse) {
+						res.clearCookie('temporalSession');
+			    		console.log('New Session '+APIData.toString()+ "  Type User:"+UserData.type);
+			    		req.session.token = APIData.toString();
+			    		req.session.type = UserData.type;
+			    		res.cookie('session', APIData.toString());
+			    		res.sendStatus(200);
+					})
+				})
 	    	}
 	    }
 	    
@@ -166,7 +174,7 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.get('/place/create', function(req, res, next) {
-  if(req.session.token){
+  if(req.session.type === true){
   	res.render('add_place');	
   }
   else{
@@ -176,17 +184,18 @@ router.get('/place/create', function(req, res, next) {
 });
 
 router.get('/user/create', function(req, res, next) {
-  if(req.session.token){
-  	res.render('add_user');
+  if(req.session.type == true){
+  	APIClient.get("http://localhost:4000/api/place", function (APIData, APIResponse) {
+  		res.render('add_user',{places:APIData,session:req.session.token});
+  	})
   }	
   else{
   	res.sendStatus(404);
   }
-  
 });
 
 router.get('/devotional/create', function(req, res, next) {
-  if(req.session.token){
+  if(req.session.type == true){
 	res.render('add_devotional');	
   }	
   else{
