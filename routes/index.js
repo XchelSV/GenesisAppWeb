@@ -101,7 +101,9 @@ router.get('/post/pray/:post_id', function(req,res,next){
 });
 
 router.get('/devotional/list', function(req, res, next) {
-  res.render('show_devotionals',{type:req.session.type});
+	APIClient.get("http://localhost:4000/api/devotional", function (APIData, APIResponse) {
+	  res.render('show_devotionals',{devotionals:APIData,type:req.session.type});
+	})
 });
 
 router.get('/place/list', function(req, res, next) {

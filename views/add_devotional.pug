@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-    .container
+    .container(ng-controller='addDevotionalController')
         .row(style='margin-top:3%')
             .col.s6.push-s3.center
                 h3.font-title Crear Devocional
@@ -11,38 +11,38 @@ block content
                 form
                     .row.font-text
                         .input-field.col.s12
-                            input#titulo.validate(type='text')
+                            input#titulo.validate(type='text',ng-model='title',required)
                             label(for='titulo') Título
                     .row.font-text
 
                         .input-field.col.s12
-                            textarea#textarea1.materialize-textarea(data-length='2500',name='textarea1')
+                            textarea#textarea1.materialize-textarea(data-length='2500',name='textarea1',ng-model='body',required)
 
                     .row.font-text
                         .input-field.col.s8
-                          input#date.validate.datepicker(type='date')
+                          input#date.datepicker(type='date',ng-model='date',required)
                           label(for='date') Fecha de Publicación                            
                     .row.font-text
                         .file-field.input-field.col.s4
                           .btn
                             span Imagen
-                            input(type='file')
+                            input(type='file',file-model='img')
                           .file-path-wrapper
-                            input.file-path.validate(type='text')
+                            input.file-path.validate(type='text',ng-model='img_path')
                         .file-field.input-field.col.s4
                           .btn
                             span Audio
-                            input(type='file')
+                            input(type='file',file-model='audio')
                           .file-path-wrapper
-                            input.file-path.validate(type='text')
+                            input.file-path.validate(type='text',ng-model='audio_path')
                         .file-field.input-field.col.s4
                           .btn
                             span Video
-                            input(type='file')
+                            input(type='file',file-model='video')
                           .file-path-wrapper
-                            input.file-path.validate(type='text')
+                            input.file-path.validate(type='text',ng-model='video_path')
                     .row.font-title
-                        button.btn.waves-effect.waves-light.teal(type='submit', name='action')
+                        button.btn.waves-effect.waves-light.teal(type='submit', name='action',ng-click='create()')
                           | Guardar
                           i.material-icons.right save
 
@@ -58,7 +58,9 @@ block content
         CKEDITOR.replace( 'textarea1' );
         $('.datepicker').pickadate({
             selectMonths: true, // Creates a dropdown to control month
-            selectYears: 15 // Creates a dropdown of 15 years to control year
+            selectYears: 15, // Creates a dropdown of 15 years to control year
+            //format: 'dd/mm/yyyy',
+            //formatSubmit: 'dd/mm/yyyy',
               });
           });
         

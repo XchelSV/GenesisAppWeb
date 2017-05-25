@@ -21,10 +21,10 @@ block content
     /*# sourceMappingURL=style.css.map */
 
   
-  .container
-    .row(style='margin-top:1%')
+  .container-fluid
+    .row(style='margin-top:1%').cards-container
       each user in users
-        .col.s12.m6
+        .col.s12.m12
             .card.hoverable.blue-grey.lighten-5
               .card-image
                 img(src='http://localhost:4000/api/user/img/'+user._id)

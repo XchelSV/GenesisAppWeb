@@ -20,42 +20,31 @@ block content
 
     /*# sourceMappingURL=style.css.map */
 
-  
-  .containerx
-    .row(style='margin-top:1%')
-        .col.s12.m4
-            .card.hoverable.blue-grey.lighten-5
-              .card-image
-                img(src='/images/half-logo.png')
-              // A container for floating buttons
-              .card-buttons
-                // A small amber button
-                a.btn-floating.btn-large.waves-effect.waves-light.teal
-                  i.material-icons navigation
-                // A large red button
-                a.btn-floating.btn-large.waves-effect.waves-light.red
-                  i.material-icons delete_sweep
-              .card-content
-                span.card-title.font-title Card Title
-                p.font-text
-                  | I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
-
-        .col.s12.m4
-            .card.hoverable.blue-grey.lighten-5
-              .card-image
-                img(src='/images/half-logo.png')
-              // A container for floating buttons
-              .card-buttons
-                // A small amber button
-                a.btn-floating.btn-large.waves-effect.waves-light.teal
-                  i.material-icons navigation
-                // A large red button
-                a.btn-floating.btn-large.waves-effect.waves-light.red
-                  i.material-icons delete_sweep
-              .card-content
-                span.card-title.font-title Card Title
-                p.font-text
-                  | I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.           
-
-   
   include add_user_place_button
+  .containerx
+    .row(style='margin-top:1%').cards-container
+      each devotional in devotionals
+        .col.s12.m12
+            .card.hoverable.blue-grey.lighten-5
+              .card-image
+                if (devotional.img)
+                  img(src='http:///localhost:4000/api/devotional/img/'+devotional._id)
+                else  
+                  img(src='/images/half-logo.png')
+              // A container for floating buttons
+              .card-buttons
+                // A small amber button
+                a.btn-floating.btn-large.waves-effect.waves-light.teal
+                  i.material-icons navigation
+                // A large red button
+                if (type)
+                  a.btn-floating.btn-large.waves-effect.waves-light.red
+                    i.material-icons delete_sweep
+              .card-content
+                span.card-title.font-title= devotional.title
+                if (devotional.body.length <= 200)
+                  p.font-text!= devotional.body
+                else
+                  p.font-text!= devotional.body.slice(0,200)+'...'
+                        
+    
