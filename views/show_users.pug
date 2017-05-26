@@ -21,31 +21,32 @@ block content
     /*# sourceMappingURL=style.css.map */
 
   
-  .container-fluid
+  .container-fluid(ng-controller='showUsersController')
     .row(style='margin-top:1%').cards-container
       each user in users
-        .col.s12.m12
-            .card.hoverable.blue-grey.lighten-5
-              .card-image
-                img(src='http://localhost:4000/api/user/img/'+user._id)
-                span.card-title.font-title= user.name
-              // A container for floating buttons
-              .card-buttons
-                // A small amber button
-                a.btn-floating.btn-large.waves-effect.waves-light.teal
-                  i.material-icons monetization_on
-                // A large red button
-                if (type)
-                  a.btn-floating.btn-large.waves-effect.waves-light.red
-                    i.material-icons delete_forever
-              .card-content
-                p.font-text
-                  | #{user.name}
-                  br
-                  b 
-                   | Área de Trabajo: #{user.servicePlace}
-                  br
-                  | #{user.biography}
+        if (user.type != true)
+          .col.s12.m12
+              .card.hoverable.blue-grey.lighten-5
+                .card-image
+                  img(src='http://localhost:4000/api/user/img/'+user._id)
+                  span.card-title.font-title= user.name
+                // A container for floating buttons
+                .card-buttons
+                  // A small amber button
+                  a.btn-floating.btn-large.waves-effect.waves-light.teal
+                    i.material-icons monetization_on
+                  // A large red button
+                  if (type)
+                    a.btn-floating.btn-large.waves-effect.waves-light.red(href='#modaldelete', id = user._id, ng-click='delete($event)')
+                      i.material-icons delete_forever
+                .card-content
+                  p.font-text
+                    | #{user.name}
+                    br
+                    b 
+                     | Área de Trabajo: #{user.servicePlace}
+                    br
+                    | #{user.biography}
 
-   
-  include add_user_place_button
+    include delete_button
+    include add_user_place_button

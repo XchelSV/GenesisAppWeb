@@ -140,6 +140,18 @@ router.get('/user/list', function(req, res, next) {
 	})
 });
 
+router.get('/user/delete/:_id', function(req, res, next) {
+	var id = req.params._id;
+	APIClient.delete("http://localhost:4000/api/user/"+id+"/"+req.session.token, function (APIData2, APIResponse) {
+		if(APIResponse.statusCode == 200){
+		  	res.redirect('/user/list');
+		}
+		else{
+		  	res.render('error');
+		}
+	})
+});
+
 router.get('/login', function(req, res, next) {
   if(req.session.token){
   	res.redirect('/');
