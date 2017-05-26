@@ -106,6 +106,13 @@ router.get('/devotional/list', function(req, res, next) {
 	})
 });
 
+router.get('/devotional/read/:_id', function(req, res, next) {
+	var id = req.params._id;
+	APIClient.get("http://localhost:4000/api/devotional/"+id, function (APIData, APIResponse) {
+	  res.render('devotional',{devotional:APIData,type:req.session.type});
+	})
+});
+
 router.get('/place/list', function(req, res, next) {
   APIClient.get("http://localhost:4000/api/place", function (APIData, APIResponse) {
   	res.render('show_places',{places:APIData,type:req.session.type});	

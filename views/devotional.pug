@@ -1,0 +1,57 @@
+extends layout
+
+block content
+
+    .parallax-container
+        .section
+            .container
+                br
+                br
+                br
+                br
+                br
+                br
+                h1.header.center.font-title.white-text= devotional.title
+                br
+                br
+                .row.center
+                    a(href="#body").btn-floating.btn-large.waves-effect.waves-light.teal.darken-2 
+                        i.material-icons keyboard_arrow_down
+
+                
+
+        .parallax
+            if (devotional.img)
+                img(src='http:///localhost:4000/api/devotional/img/'+devotional._id)
+            else
+                img(src='/images/parallax_back.jpg')
+
+
+    .contanierx(style='margin-top:4%')
+        .row
+            .col.s12.m10.push-m1#body
+                p.font-text!= devotional.body 
+        if (devotional.audio)
+            .row.center
+                p.font-title Audio:
+            .row.center
+                audio(controls='')
+                  source(src='http:///localhost:4000/api/devotional/audio/'+devotional._id, type='audio/mpeg')
+                  | Your browser does not support the audio element.
+        if (devotional.video)
+            .row.center
+                video.responsive-video(controls='')
+                    source(src='http:///localhost:4000/api/devotional/video/'+devotional._id, type='video/mp4')
+
+    script.
+        $(document).ready(function(){
+          $('.parallax').parallax();
+
+          $('a').click(function(){
+                $('html, body').animate({
+                    scrollTop: $( $(this).attr('href') ).offset().top
+                }, 500);
+                return false;
+            });
+        });
+
