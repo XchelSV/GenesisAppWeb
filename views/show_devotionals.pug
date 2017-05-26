@@ -21,7 +21,8 @@ block content
     /*# sourceMappingURL=style.css.map */
 
   include add_user_place_button
-  .containerx
+  
+  .containerx(ng-controller='showDevotionalsController')
     .row(style='margin-top:1%').cards-container
       each devotional in devotionals
         .col.s12.m12
@@ -38,13 +39,21 @@ block content
                   i.material-icons navigation
                 // A large red button
                 if (type)
-                  a.btn-floating.btn-large.waves-effect.waves-light.red
-                    i.material-icons delete_sweep
+                   a.btn-floating.btn-large.waves-effect.waves-light.red(href='#modaldelete', id = devotional._id, ng-click='delete($event)')
+                      i.material-icons delete_forever
+                   
+  
+
+
               .card-content
                 span.card-title.font-title= devotional.title
                 if (devotional.body.length <= 200)
                   p.font-text!= devotional.body
                 else
                   p.font-text!= devotional.body.slice(0,200)+'...'
+
+
+
+    include delete_button
                         
     

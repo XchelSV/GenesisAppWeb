@@ -1,0 +1,23 @@
+block delete_button
+    
+    style.
+        #modaldelete { width: 40% !important ; height: 25% !important ; }  /* increase the height and width as you desire */
+
+
+    
+
+    // Modal Structure
+    #modaldelete.modal
+      .modal-content
+        h4.center.font-title {{title}}
+        p.center.font-text ¿Estas seguro que deseas eliminar esto?
+      .modal-footer(style='padding-right:3%')
+            a.modal-action.waves-effect.red.lighten-2.btn-flat.white-text(href='{{url}}') Eliminar
+            a.modal-action.modal-close.waves-effect.grey.lighten-2.btn-flat(href='#!') Cancelar
+
+
+    script.
+        $(document).ready(function(){
+            // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+            $('.modal').modal();
+        });
