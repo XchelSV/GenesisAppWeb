@@ -22,7 +22,7 @@ block content
 
         .parallax
             if (devotional.img)
-                img(src='http:///'+server+'/api/devotional/img/'+devotional._id)
+                img(src=server+'/api/devotional/img/'+devotional._id)
             else
                 img(src='/images/parallax_back.jpg')
 
@@ -36,12 +36,12 @@ block content
                 p.font-title Audio:
             .row.center
                 audio(controls='')
-                  source(src='http:///'+server+'/api/devotional/audio/'+devotional._id, type='audio/mpeg')
+                  source(src=server+'/api/devotional/audio/'+devotional._id, type='audio/mpeg')
                   | Your browser does not support the audio element.
         if (devotional.video)
             .row.center
                 video.responsive-video(controls='')
-                    source(src='http:///'+server+'/api/devotional/video/'+devotional._id, type='video/mp4')
+                    source(src=server+'/api/devotional/video/'+devotional._id, type='video/mp4')
 
     script.
         $(document).ready(function(){
