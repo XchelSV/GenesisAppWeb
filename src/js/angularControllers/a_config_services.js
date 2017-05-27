@@ -1,6 +1,6 @@
 var app = angular.module('Genesis',['ngRoute', 'ngCookies','angular-uuid','LocalStorageModule','angularMoment','angular-loading-bar','cfp.loadingBarInterceptor']);
     
-    var url = window.location.hostname;
+    var url = 'xchelsvz.me:4000';
     app.config(function (localStorageServiceProvider) {
       localStorageServiceProvider
         .setPrefix('Genesis')
