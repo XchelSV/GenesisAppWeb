@@ -17,7 +17,7 @@ app.controller('indexController',function  ($scope, $http, $cookies, fileUpload,
             }
             if ($scope.file != undefined){
                 var date = new Date();
-                var uploadUrl = 'http://localhost:4000/api/post/'+$cookies.session;
+                var uploadUrl = 'http://'+url+'/api/post/'+$cookies.session;
                 var NewPost = fileUpload.uploadFileToUrl($scope.file,$scope.postText, true,false,false ,uploadUrl);
                 $scope.postText = undefined;
                 $scope.file = undefined;
@@ -26,7 +26,7 @@ app.controller('indexController',function  ($scope, $http, $cookies, fileUpload,
             }
             else{
                 var date = new Date();
-                var uploadUrl = 'http://localhost:4000/api/post/'+$cookies.session;
+                var uploadUrl = 'http://'+url+'/api/post/'+$cookies.session;
                 var NewPost = fileUpload.uploadFileToUrl(undefined, $scope.postText, false,false,false ,uploadUrl);
                 $scope.postText = undefined;
                 $scope.file = undefined;

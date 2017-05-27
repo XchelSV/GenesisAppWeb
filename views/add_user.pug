@@ -8,7 +8,7 @@ block content
                 h3.font-title Registrar Misionero
         .row.font-text
             .col.s12
-                form(action='http://localhost:4000/api/user/'+session, method='post', enctype='multipart/form-data')
+                form(action=server+'/api/user/'+session, method='post', enctype='multipart/form-data')
                     .row
                       .input-field.col.s6
                         input#name.validate(type='text',name='name',required)

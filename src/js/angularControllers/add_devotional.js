@@ -7,7 +7,7 @@ app.controller('addDevotionalController',function  ($scope, $http, $cookies, dev
 			
 		}
 		else{
-			var uploadUrl = 'http://localhost:4000/api/devotional/'+$cookies.session;
+			var uploadUrl = 'http://'+url+'/api/devotional/'+$cookies.session;
     		var NewDevotional = devotionalUpload.uploadDevotionalToUrl($scope.title,body,$scope.date,$scope.img,$scope.video,$scope.audio,uploadUrl);
 		}
 	}	

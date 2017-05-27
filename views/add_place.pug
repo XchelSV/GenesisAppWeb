@@ -122,11 +122,13 @@ html
           autocomplete.addListener('place_changed', function() {
           infowindow.close();
           marker.setVisible(false);
+
+          var url = window.location.hostname;
           var place = autocomplete.getPlace();
             $('#btn-save').click(function(){
                 $.ajax({
                   method: "POST",
-                  url: "http://localhost:4000/api/place",
+                  url: "http://"+url+"/api/place",
                   data: {place_id:place.place_id,location:[place.geometry.location.lat(),place.geometry.location.lng()],formatted_address:place.formatted_address}
                 ,success: function(result){
                     alert( "Data Saved: " + result );

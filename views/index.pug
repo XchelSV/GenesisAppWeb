@@ -33,7 +33,7 @@ block content
                 .card.hoverable.blue-grey.lighten-5
                   if (post.img==true)
                     .card-image
-                      img(src='http://localhost:4000/api/post/img/'+post._id)
+                      img(src=server+'/api/post/img/'+post._id)
                       
                   // A container for floating buttons
                   .card-buttons

@@ -28,7 +28,7 @@ block content
           .col.s12.m12
               .card.hoverable.blue-grey.lighten-5
                 .card-image
-                  img(src='http://localhost:4000/api/user/img/'+user._id)
+                  img(src=server+'/api/user/img/'+user._id)
                   span.card-title.font-title= user.name
                 // A container for floating buttons
                 .card-buttons
