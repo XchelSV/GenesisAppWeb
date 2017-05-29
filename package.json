@@ -1,6 +1,6 @@
 {
   "name": "GenesisSocial",
-  "version": "0.12.1",
+  "version": "0.12.2",
   "private": true,
   "scripts": {
     "eslint": "./node_modules/.bin/eslint ./src/js/angularControllers/*.js && ./node_modules/.bin/eslint ./routes/*.js",
