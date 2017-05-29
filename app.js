@@ -10,6 +10,11 @@ var multipart = require('connect-multiparty');
 var redis = require('redis');
 
 var routes = require('./routes/index');
+var auth = require('./routes/authenticate');
+var devotional = require('./routes/devotional');
+var place = require('./routes/place');
+var post = require('./routes/post');
+var user = require('./routes/user');
 
 var app = express();
 var client = redis.createClient();
@@ -36,6 +41,11 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/', auth);
+app.use('/', devotional);
+app.use('/', place);
+app.use('/', post);
+app.use('/', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
