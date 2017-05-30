@@ -12,6 +12,13 @@ router.get('/place/list', function(req, res, next) {
   })
 });
 
+router.get('/place/users/:id', function(req, res, next) {
+	var id = req.params.id;
+  	APIClient.get("http://localhost:4000/api/users/place/"+id, function (APIData, APIResponse) {
+  		res.render('show_users',{users:APIData,type:req.session.type});
+  	})
+});
+
 
 router.get('/place/create', function(req, res, next) {
   if(req.session.type === true){
