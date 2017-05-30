@@ -2,20 +2,40 @@ extends layout
 
 block content
 
+    style.
+      .card .card-buttons {
+        position: relative;
+        top: -5px;
+        text-align: right;
+        padding-right: 20px;
+        margin-bottom: -20px; }
+        .card .card-buttons .btn-floating {
+          margin-left: 10px;
+          margin-top: -18.5px; }
+          .card .card-buttons .btn-floating.btn-large {
+            margin-top: -27.75px; }
+      .card.small .card-buttons, .card.medium .card-buttons, .card.large .card-buttons {
+        top: 0; }
+
     .contanierx(ng-controller='showPlaceController')
         .row(style='margin-top:1%')  
           each place in places
               .col.m4
-                  .card
+                  .card.hoverable.blue-grey.lighten-5
                     .card-image
                       img(src='https://maps.googleapis.com/maps/api/staticmap?center='+place.formatted_address+'&zoom=10&size=500x400&maptype=roadmap&markers=color:red%7C'+place.location[0]+','+place.location[1]+'&key=AIzaSyA7G4kvKuFO9YFRKTkah_KJxurFUbvCA-Q')
-                      
-                      a.btn-floating.halfway-fab.waves-effect.waves-light.red
+                    .card-buttons
+                      a.btn-floating.btn-large.waves-effect.waves-light.teal
                         i.material-icons navigation
+                      if (type)
+                        a.btn-floating.btn-large.waves-effect.waves-light.red(id=place._id, href='#modaldelete', ng-click='delete($event)')
+                          i.material-icons delete_forever
+
                     .card-content
                       if (place.formatted_address.length >= 35)
                         span.card-title.font-title=place.formatted_address.slice(0,35)+'...'
                       else
                         span.card-title.font-title=place.formatted_address
 
+        include delete_button
         include add_user_place_button
