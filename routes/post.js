@@ -8,11 +8,11 @@ router.get('/social/list', function(req, res, next) {
 	APIClient.get("http://localhost:4000/api/post", function (APIData, APIResponse) {
 		if (req.session.token){
 			APIClient.get("http://localhost:4000/api/session/user/id/"+req.session.token, function (data, APIResponse) {
-				res.render('index', {posts: APIData, session: data, type:req.session.type});	
+				res.render('index', {posts: APIData, session: data, type:req.session.type,login:req.session.login});	
 			})
 		}
 		else{
-			res.render('index', {posts: APIData, session: req.cookies.temporalSession});	
+			res.render('index', {posts: APIData, session: req.cookies.temporalSession,login:req.session.login});	
 
 		}
 		

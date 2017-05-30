@@ -8,14 +8,14 @@ var APIClient = new Client();
 
 router.get('/place/list', function(req, res, next) {
   APIClient.get("http://localhost:4000/api/place", function (APIData, APIResponse) {
-  	res.render('show_places',{places:APIData,type:req.session.type});	
+  	res.render('show_places',{places:APIData,type:req.session.type,login:req.session.login});	
   })
 });
 
 router.get('/place/users/:id', function(req, res, next) {
 	var id = req.params.id;
   	APIClient.get("http://localhost:4000/api/users/place/"+id, function (APIData, APIResponse) {
-  		res.render('show_users',{users:APIData,type:req.session.type});
+  		res.render('show_users',{users:APIData,type:req.session.type,login:req.session.login});
   	})
 });
 

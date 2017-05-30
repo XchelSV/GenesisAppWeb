@@ -34,6 +34,7 @@ router.post('/authenticate', function(req,res,next){
 					APIClient.get("http://localhost:4000/api/user/profile/"+data, function (UserData, APIResponse) {
 						res.clearCookie('temporalSession');
 			    		console.log('New Session '+APIData.toString()+ "  Type User:"+UserData.type);
+			    		req.session.login = true;
 			    		req.session.token = APIData.toString();
 			    		req.session.type = UserData.type;
 			    		res.cookie('session', APIData.toString());

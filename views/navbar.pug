@@ -16,7 +16,9 @@ block navbar
             a(href='/devotional/list') Devocionales
 
         ul.right.hide-on-med-and-down
-          li
-            a(href='/login') Iniciar Sesión
-          li
-            a(href='/logout') Cerrar Sesión
+          if (login)
+            li
+              a(href='/logout') Cerrar Sesión            
+          else
+            li
+              a(href='/login') Iniciar Sesión
