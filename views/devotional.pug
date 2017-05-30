@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-    .parallax-container
+    .parallax-container.animated.fadeIn
         .section
             .container
                 br
@@ -27,7 +27,7 @@ block content
                 img(src='/images/parallax_back.jpg')
 
 
-    .contanierx(style='margin-top:4%')
+    .contanierx.animated.fadeIn(style='margin-top:4%')
         .row
             .col.s12.m10.push-m1#body
                 p.font-text!= devotional.body 

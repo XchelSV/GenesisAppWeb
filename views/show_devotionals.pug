@@ -22,7 +22,7 @@ block content
 
   include add_user_place_button
   
-  .containerx(ng-controller='showDevotionalsController')
+  .containerx.animated.fadeIn(ng-controller='showDevotionalsController')
     .row(style='margin-top:1%').cards-container
       each devotional in devotionals
         .col.s12.m12

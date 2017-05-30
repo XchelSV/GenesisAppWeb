@@ -21,7 +21,7 @@ block content
     /*# sourceMappingURL=style.css.map */
 
   
-  .container-fluid(ng-controller='showUsersController')
+  .container-fluid.animated.fadeIn(ng-controller='showUsersController')
     if (users.length >= 1)  
       .row(style='margin-top:1%').cards-container
         each user in users
