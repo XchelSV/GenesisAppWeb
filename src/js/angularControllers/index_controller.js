@@ -69,115 +69,14 @@ app.controller('indexController',function  ($scope, $http, $cookies, fileUpload,
 
     }        
 
-        $scope.posts = [];
-        $scope.numberOfPosts;
+    $scope.posts = [];
+    $scope.numberOfPosts;
 
 
-        $scope.morePosts = function (){
+    $scope.delete = function(event){
+        $scope.post_id = event.delegateTarget.id;
+        $scope.url = '/post/delete/'+$scope.post_id;
+        $scope.title = 'Eliminar Publicación';
+    }
 
-
-            $http.get('/posts/'+$scope.numberOfPosts).success(function (data, status, headers, config){
-            
-            if(data.length != 0) {
-
-                for (var l=0; l < data.length; l++) {
-                        
-                    $scope.posts.push(data[l]);
-
-                }
-                
-
-                for (var i = 0; i < data.length; i++) {
-                    for (var j = 0; j < data[i].like.length; j++) {
-                        if ($cookies.session) {
-                            if($cookies.session == data[i].like[j]){
-                                localStorageService.set('like'+data[i]._id,true);
-                            }
-                        }
-                        else{
-                            if($cookies.temporalSession == data[i].like[j]){
-                                localStorageService.set('like'+data[i]._id,true);
-                            }
-                        }
-                    }
-
-                    for (var k = 0; k < data[i].pray4You.length; k++) {
-                        if ($cookies.session) {
-                            
-                            if($cookies.session == data[i].pray4You[k]){
-                                localStorageService.set('pray'+data[i]._id,true);
-                            }
-                        }
-                        else{
-                            
-                            if($cookies.temporalSession == data[i].pray4You[k]){
-                                localStorageService.set('pray'+data[i]._id,true);
-                            }
-                        }
-                    }
-                }
-
-                $scope.numberOfPosts = $scope.numberOfPosts+data.length;
-
-            }
-
-            })
-            .error(function (){
-                alert('AJAX more posts error');
-            }); 
-
-
-        }
-
-        $scope.accessToPost = function (user_id){
-
-            
-            if($cookies.session != undefined){
-                if($cookies.id == user_id){
-                    return true;
-                }
-                else{
-                    return false;
-                }
-            }
-            else{
-                return false;
-            }
-
-        }
-
-        $scope.showPostDetails = function (id){
-
-            $http.get('/post/'+id).success(function (data, status, headers, config){
-                    
-                    $scope.postDetails = data;
-                    
-                })
-                .error(function (){
-                    alert('AJAX error in details Post');
-                    
-                });
-
-        }
-
-        $scope.deletePost = function (id,img){
-
-            $http.delete('/post/'+img+'/'+id).success(function (data, status, headers, config){
-                    
-                    var postDeleted = angular.element(document.querySelector('#post'+id));
-                    postDeleted.removeClass('animated fadeIn');
-                    postDeleted.addClass('animated fadeOut');
-                    
-
-                    var deleteModal = angular.element(document.querySelector('#deleteModal'));
-                    deleteModal.modal('hide');
-                    
-                })
-                .error(function (){
-                    alert('AJAX error in details Post');
-                    
-                });
-
-        }
-
-    });
+});

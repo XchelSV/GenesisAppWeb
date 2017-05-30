@@ -93,4 +93,27 @@ router.get('/post/pray/:post_id', function(req,res,next){
 	}
 });
 
+router.get('/post/delete/:post_id', function(req,res,next){
+
+	var id = req.params.post_id;
+	if(req.session.token){
+		APIClient.get("http://localhost:4000/api/post/"+id, function (data, APIResponse) {
+			if (APIResponse.statusCode == 200){
+				APIClient.delete("http://localhost:4000/api/post/"+data.img+"/"+id+"/"+req.session.token, function (APIData, APIResponse2) {
+					if (APIResponse.statusCode == 200){
+						res.redirect('/social/list');
+					}
+					else{
+						res.render('error');
+					}
+				});
+			}
+			else{
+				res.render('error');
+			}
+		});
+	}
+
+});
+
 module.exports = router;

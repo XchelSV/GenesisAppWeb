@@ -22,7 +22,7 @@ router.get('/devotional/read/:_id', function(req, res, next) {
 router.get('/devotional/delete/:_id', function(req, res, next) {
 	var id = req.params._id;
 
-	APIClient.get("http://localhost:4000/api/devotional/"+id, function (APIData, APIResponse) {
+	APIClient.get("http://localhost:4000/api/devotional/"+id, function (APIData, APIResponse2) {
 		APIClient.delete("http://localhost:4000/api/devotional/"+id+"/"+APIData.img+"/"+APIData.audio+"/"+APIData.video+"/"+req.session.token, function (APIData2, APIResponse) {
 			if(APIResponse.statusCode == 200){
 		  		res.redirect('/devotional/list');

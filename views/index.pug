@@ -64,11 +64,11 @@ block content
                       a.btn-floating.btn-large.waves-effect.waves-light.black.tooltipped(id=post._id ,data-position="top" data-delay="50" data-tooltip=post.like.length , data-ng-click="like($event)")
                         i.material-icons favorite
                     if (type)
-                      a.btn-floating.btn-large.waves-effect.waves-light.red(id=post._id)
+                      a.btn-floating.btn-large.waves-effect.waves-light.red(id=post._id,href='#modaldelete',ng-click="delete($event)")
                           i.material-icons delete_forever
                     else
                       if (post.user_id == session)
-                        a.btn-floating.btn-large.waves-effect.waves-light.red(id=post._id)
+                        a.btn-floating.btn-large.waves-effect.waves-light.red(id=post._id,href='#modaldelete',ng-click="delete($event)")
                           i.material-icons delete_forever
 
                   .card-content
@@ -76,3 +76,4 @@ block content
                     p.font-text=post.body     
 
     include add_post_button
+    include delete_button
