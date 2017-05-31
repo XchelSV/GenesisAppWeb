@@ -21,9 +21,9 @@ block content
     /*# sourceMappingURL=style.css.map */
 
   
-  .container-fluid.animated.fadeIn(ng-controller='showUsersController')
+  .container-fluid(ng-controller='showUsersController')
     if (users.length >= 1)  
-      .row(style='margin-top:1%').cards-container
+      .row.animated.fadeIn(style='margin-top:1%').cards-container
         each user in users
           if (user.type != true)
             .col.s12.m12
@@ -49,7 +49,7 @@ block content
                       br
                       | #{user.biography}
     else
-        .row(style='margin-top:8%')
+        .row.animated.fadeIn(style='margin-top:8%')
           h5.font-text(align='center') Aún no tenemos misioneros en esta área, ¿Porqué no empiezas tú?
 
     include delete_button

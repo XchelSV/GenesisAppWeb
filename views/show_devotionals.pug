@@ -22,8 +22,8 @@ block content
 
   include add_user_place_button
   
-  .containerx.animated.fadeIn(ng-controller='showDevotionalsController')
-    .row(style='margin-top:1%').cards-container
+  .containerx(ng-controller='showDevotionalsController')
+    .row.animated.fadeIn(style='margin-top:1%').cards-container
       each devotional in devotionals
         .col.s12.m12
             .card.hoverable.blue-grey.lighten-5
@@ -51,6 +51,12 @@ block content
                   p.font-text!= devotional.body
                 else
                   p.font-text!= devotional.body.slice(0,200)+'...'
+                div(align='right')
+                  span.font-text(id='moment-'+devotional._id)
+                  script.
+                    moment.locale('es');
+                    var now = moment("#{devotional.showDate}").fromNow();
+                    document.getElementById('moment-#{devotional._id}').textContent=now;   
 
 
 

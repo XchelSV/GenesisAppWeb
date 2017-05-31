@@ -17,8 +17,8 @@ block content
       .card.small .card-buttons, .card.medium .card-buttons, .card.large .card-buttons {
         top: 0; }
 
-    .contanierx.animated.fadeIn(ng-controller='showPlaceController')
-        .row(style='margin-top:1%')  
+    .contanierx(ng-controller='showPlaceController')
+        .row.animated.fadeIn(style='margin-top:1%')  
           each place in places
               .col.m4
                   .card.hoverable.blue-grey.lighten-5

@@ -21,8 +21,8 @@ block content
     /*# sourceMappingURL=style.css.map */
 
   
-  .container-fluid.animated.fadeIn(ng-controller='indexController')
-    .row
+  .container-fluid(ng-controller='indexController')
+    .row.animated.fadeIn
       .col.s12.cards-container
         .margin(style='margin-top:10%')
           script.
@@ -63,6 +63,7 @@ block content
                     else
                       a.btn-floating.btn-large.waves-effect.waves-light.black.tooltipped(id=post._id ,data-position="top" data-delay="50" data-tooltip=post.like.length , data-ng-click="like($event)")
                         i.material-icons favorite
+                  
                     if (type)
                       a.btn-floating.btn-large.waves-effect.waves-light.red(id=post._id,href='#modaldelete',ng-click="delete($event)")
                           i.material-icons delete_forever
@@ -73,7 +74,13 @@ block content
 
                   .card-content
                     span.card-title.font-title=post.userName
-                    p.font-text=post.body     
+                    p.font-text=post.body
+                    div(align='right')
+                      span.font-text(id='moment-'+post._id)
+                    script.
+                      moment.locale('es');
+                      var now = moment("#{post.date}").fromNow();
+                      document.getElementById('moment-#{post._id}').textContent=now;     
 
-    include add_post_button
     include delete_button
+    include add_post_button

@@ -1,4 +1,4 @@
-app.controller('homeController',function  ($scope, $http, $cookies, fileUpload, uuid, localStorageService) {
+app.controller('homeController',function  ($scope, $http, $cookies, fileUpload, uuid) {
         
     $scope.session = function(){
         if($cookies.session != undefined){

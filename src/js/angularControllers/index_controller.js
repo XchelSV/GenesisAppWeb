@@ -1,4 +1,4 @@
-app.controller('indexController',function  ($scope, $http, $cookies, fileUpload, uuid, localStorageService) {
+app.controller('indexController',function  ($scope, $http, $cookies, fileUpload, uuid) {
         
     $scope.session = function(){
         if($cookies.session != undefined){
