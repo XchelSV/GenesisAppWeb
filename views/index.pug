@@ -3,7 +3,9 @@ extends layout
 block content
 
   style.
-
+    .cards-container .card {
+      margin-top: 7%;
+    }
     .card .card-buttons {
       position: relative;
       top: -5px;
@@ -24,7 +26,7 @@ block content
   .container-fluid(ng-controller='indexController')
     .row.animated.fadeIn
       .col.s12.cards-container
-        .margin(style='margin-top:10%')
+        .margin
           script.
             var posts = "#{posts}";
 
