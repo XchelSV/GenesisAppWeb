@@ -2,60 +2,126 @@ extends layout
 
 block content
 
-  style.
+  .parallax-container.animated.fadeIn
+        .section
+            .container
+                br
+                br
+                br
+                br
+                .row(align='center')
+                  .col.m4.push-m4
+                    img.responsive-img(src='/images/half-logo.png')
 
-    .card .card-buttons {
-      position: relative;
-      top: -5px;
-      text-align: right;
-      padding-right: 20px;
-      margin-bottom: -20px; }
-      .card .card-buttons .btn-floating {
-        margin-left: 10px;
-        margin-top: -18.5px; }
-        .card .card-buttons .btn-floating.btn-large {
-          margin-top: -27.75px; }
-    .card.small .card-buttons, .card.medium .card-buttons, .card.large .card-buttons {
-      top: 0; }
+                h1.header.center.font-title.light-blue-text(style='margin-top:-1%') Génesis Mesoamérica
+                h3.center.font-text.white-text El origen de
+                  b.light-blue-text 
+                    | Nuevas Iglesias 
+                  | en la Región Mesoamérica
 
-    /*# sourceMappingURL=style.css.map */
+                br
+                br
+                .row.center
+                    a(href="#body").btn-floating.btn-large.waves-effect.waves-light.light-blue.accent-1.darken-2 
+                        i.material-icons keyboard_arrow_down
+
+                
+
+        .parallax.img-gray
+          img.img-filter(src='/images/portada-misioneros.jpg')
 
   
-  .containerx.animated.fadeIn(ng-controller='homeController')
-    .row(style='margin-top:1%')
-        .col.s12.m4
-            .card.hoverable.blue-grey.lighten-5
-              .card-image
-                img(src='/images/half-logo.png')
-              // A container for floating buttons
-              .card-buttons
-                // A small amber button
-                a.btn-floating.btn-large.waves-effect.waves-light.light-blue.accent-1
-                  i.material-icons navigation
-                // A large red button
-                a.btn-floating.btn-large.waves-effect.waves-light.red
-                  i.material-icons delete_sweep
-              .card-content
-                span.card-title.font-title Card Title
-                p.font-text
-                  | I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
+  .containerx.animated.fadeIn#body(ng-controller='homeController')
+    .row(style='margin-top:5%')
+      .col.m10.push-m1
+        h3.font-title.center Haciendo discípulos a la semejanza de Cristo en los centros urbanos de Mesoamérica.
 
-        .col.s12.m4
-            .card.hoverable.blue-grey.lighten-5
-              .card-image
-                img(src='/images/half-logo.png')
-              // A container for floating buttons
-              .card-buttons
-                // A small amber button
-                a.btn-floating.btn-large.waves-effect.waves-light.light-blue.accent-1
-                  i.material-icons navigation
-                // A large red button
-                a.btn-floating.btn-large.waves-effect.waves-light.red
-                  i.material-icons delete_sweep
-              .card-content
-                span.card-title.font-title Card Title
-                p.font-text
-                  | I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.           
+    .row()
+      .col.m10.push-m1
+        p.font-text(style='font-size:120%') Globalización Urbana. ¿Has escuchado de esto? ¿No todavía?  Si todavía no has escuchado de esto, lo harás muy pronto. Para decirlo de una forma simple, la globalización urbana es el movimiento de las personas dejando las áreas rurales para entrar a la ciudad.  
+          b
+            | Más del 50% de la población mundial vive en una ciudad de 100,000 habitantes o más
+          | , y el número será como un cohete llegando a 70% para el 2050. Usted puede estar preguntándose (¡sí, así como nos hacemos preguntas a nosotros mismos!), pero ¿por qué hay tanta gente moviéndose a la ciudad? La ciudad es atractiva para muchos porque ofrece esperanza de un crecimiento económico, oportunidades de educación y conveniencias modernas. 
+
+
+    .parallax-container(style='margin-top:6%')
+      .parallax
+          .video-container
+            iframe(width='891', height='501', src='https://www.youtube.com/embed/VnC9PGvv8jw', frameborder='0', allowfullscreen='')
+
+
+    .row(style='margin-top:3%')
+      .col.m10.push-m1
+        p.font-text(style='font-size:120%')   La Iglesia del Nazareno en la Región Mesoamérica (México, Central América y el Caribe) ha estado poniendo atención a estas tendencias y han empezado a pensar estratégicamente sobre nuestra presencia en las ciudades. Hicimos una investigación y ¿sabes lo que encontramos? Tenemos 
+          b
+            | poca o nula presencia en las ciudades más grandes de nuestra región. 
+          | Por supuesto, tenemos un puñado de iglesias en algunas de las ciudades grandes, pero para ser aquellas que "traen esperanza, dan su vida, predican santidad" en las áreas más pobladas de nuestra región, necesitamos congregaciones activas en las ciudades que estén 
+          b
+            |haciendo algo nuevo.
+    .row
+      .col.m10.push-m1
+        hr   
+
+    .row()
+      .col.m10.push-m1
+        p.font-text(style='font-size:120%')
+          | En Génesis, creemos que una iglesia saludable es una iglesia misional. Particularmente, creemos que:
+
+        
+        li.font-text(style='font-size:120%')
+              | Una iglesia misional en la ciudad 
+              b 
+                | practica adoración 
+              | auténtica hacia un Dios que transforma vidas a través de Su misericordia, gracia y amor. 
+        li.font-text(style='font-size:120%')
+              | Una iglesia misional en la ciudad es una 
+              b
+                | comunidad de creyentes que abrazan el llamado de Dios de ir a hacer discípulos semejantes a Cristo en las naciones, 
+              | en sus vecindarios cercanos y en el mundo.
+        li.font-text(style='font-size:120%')
+              | Una iglesia misional en la ciudad estará 
+              b
+                | presente en sus vecindarios, 
+              | viviendo vidas en santidad y compasión en los lugares más difíciles.
+
+    .row
+      .col.m10.push-m1
+        hr   
+
+    .row()
+      .col.m10.push-m1
+        p.font-text(style='font-size:150%')
+          | Entonces ¿estás con nosotros? ¿Estás listo para traer un Génesis a las ciudades de la Región Mesoamérica? Si eres parte de una iglesia con más de 100 años de historia o si eres de una célula que empezó hace poco, 
+          b
+            |hay lugar para ti en Génesis. 
+          | Te invitamos a explorar el sitio web, a revisar los recursos, leer los artículos y a pedirle a Dios que te dé una visión sobre cuál es TU parte en una iglesia que es parte de este Génesis, y cuando Él responda, 
+          b
+            | sé obediente. 
+
+    .row
+      .col.m10.push-m1
+        hr   
+
+    .row()
+      .col.m10.push-m1
+        p.font-text(style='font-size:180%')
+          | Para mas información visita: 
+          a(href='http://www.mesoamericagenesis-es.org/') www.mesoamericagenesis-es.org
+
 
    
   include add_user_place_button
+  script.
+        $(document).ready(function(){
+          $('.parallax').parallax();
+
+          $('a').click(function(){
+                $('html, body').animate({
+                    scrollTop: $( $(this).attr('href') ).offset().top
+                }, 500);
+                return false;
+            });
+
+          windowHeight = $(window).height();
+          $('.parallax-container').css('min-height', windowHeight).refresh();
+        });
