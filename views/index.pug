@@ -4,7 +4,7 @@ block content
 
   style.
     .cards-container .card {
-      margin-top: 7%;
+      margin-top: 9%;
     }
     .card .card-buttons {
       position: relative;
@@ -35,7 +35,7 @@ block content
                 .card.hoverable.blue-grey.lighten-5
                   if (post.img==true)
                     .card-image
-                      img(src=server+'/api/post/img/'+post._id)
+                      img.materialboxed(src=server+'/api/post/img/'+post._id)
                       
                   // A container for floating buttons
                   .card-buttons
