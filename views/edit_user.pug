@@ -1,0 +1,84 @@
+extends layout
+
+block content
+
+    .container.animated.fadeIn(ng-controller='addUserController')
+        .row(style='margin-top:3%')
+            .col.s6.push-s3.center
+                h3.font-title= user.name
+        .row.font-text
+            .col.s12
+                form(action=server+'/api/user/edit/'+user._id+'/'+session, method='post', enctype='multipart/form-data')
+                    .row
+                      .input-field.col.s6
+                        input#name.validate(type='text',name='name',required,value=user.name)
+                        label(for='name') Nombre Completo
+                      .input-field.col.s6
+                          input#email.validate(type='email',name='email',required,value=user.email)
+                          label(for='email') Correo Electrónico
+                    .row
+                        .input-field.col.s6
+                          input#birth.datepicker(type='date',name='birth',required,value=user.birthday)
+                          label(for='birth') Fecha de Nacimiento
+                        .input-field.col.s6
+                            select#select1(name='type',required)
+                              option(value='', selected) Elige una opción
+                              option(value='0') Misionero
+                              option(value='1') Administrador
+                            label Tipo de Usuario
+                    .row
+                        .input-field.col.s6
+                            select#select2(name='place',required)
+                                option(value='', selected) Elige una opción
+                                each place in places
+                                  option(value=place.formatted_address)= place.formatted_address
+                            label Lugar de Servicio
+                        .input-field.col.s6
+                            input#filled-in-box.filled-in(type='checkbox', checked='checked',name='active')
+                            label(for='filled-in-box') Activo
+                    .row
+                      .input-field.col.s6
+                            input#filled-inx.filled-in(type='checkbox',name='updateImg',ng-model='updimg')
+                            label(for='filled-inx') Actualizar Foto de Perfil
+                    .row(style='margin-top:4%')
+                        .file-field.input-field(ng-show='updimg')
+                          .btn.light-blue.accent-1
+                            span Imágen de Perfil
+                            input#photo(type='file',name='photo')
+                          .file-path-wrapper
+                            input.file-path.validate(type='text')
+
+                    .row
+                        .input-field.col.s12
+                            textarea#textarea1.materialize-textarea(data-length='1000',name='bio')= user.biography
+                            label(for='textarea1') Biografía
+                    .row.font-title
+                        button.btn.waves-effect.waves-light.light-blue.accent-1(type='submit', name='action')
+                          | Guardar
+                          i.material-icons.right save
+
+
+
+
+
+        include add_user_place_button
+    
+    script.
+
+      $(document).ready(function() {
+        $('#filled-inx').click(function(){
+          if(document.getElementById("filled-inx").checked == false){
+            document.getElementById("photo").required = false;
+          }
+          else{
+            document.getElementById("photo").required = true;
+          }
+        })
+        $('#select1').material_select();
+        $('#select2').material_select();
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 25// Creates a dropdown of 15 years to control year
+          });
+      });
+                     

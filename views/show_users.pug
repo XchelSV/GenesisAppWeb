@@ -38,6 +38,8 @@ block content
                       i.material-icons monetization_on
                     // A large red button
                     if (type)
+                      a.btn-floating.btn-large.waves-effect.waves-light.light-blue.accent-1(href='/user/edit/'+user._id)
+                        i.material-icons edit
                       a.btn-floating.btn-large.waves-effect.waves-light.red(href='#modaldelete', id = user._id, ng-click='delete($event)')
                         i.material-icons delete_forever
                   .card-content

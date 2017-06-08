@@ -24,6 +24,19 @@ router.get('/user/delete/:_id', function(req, res, next) {
 	})
 });
 
+router.get('/user/edit/:id', function(req, res, next) {
+  var id = req.params.id;
+  if(req.session.type == true){
+  	APIClient.get("http://localhost:4000/api/place", function (APIData, APIResponse) {
+  		APIClient.get("http://localhost:4000/api/user/profile/"+id, function (APIUser, APIResponse) {
+  			res.render('edit_user',{user:APIUser,places:APIData,session:req.session.token,login:req.session.login});
+  		})
+  	})
+  }	
+  else{
+  	res.sendStatus(404);
+  }
+});
 
 router.get('/user/create', function(req, res, next) {
   if(req.session.type == true){
