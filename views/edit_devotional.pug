@@ -1,0 +1,66 @@
+extends layout
+
+block content
+
+    .container.animated.fadeIn(ng-controller='editDevotionalController')
+        .row(style='margin-top:3%')
+            .col.s6.push-s3.center
+                h3.font-title {{title}}
+        .row
+            .col.s12
+                form
+                    .row.font-text
+                        .input-field.col.s12
+                            input#titulo.validate(type='text',ng-model='title',required)
+                            label(for='titulo')
+                    .row.font-text
+
+                        .input-field.col.s12
+                            textarea#textarea1.materialize-textarea(data-length='2500',name='textarea1',ng-model='body',required)
+
+                    .row.font-text
+                        .input-field.col.s8
+                          input#date.datepicker(type='date',ng-model='date',required)
+                          label(for='date') Fecha de Publicación                            
+                    .row.font-text
+                        .file-field.input-field.col.s4
+                          .btn.light-blue.accent-1
+                            span Imagen
+                            input(type='file',file-model='img')
+                          .file-path-wrapper
+                            input.file-path.validate(type='text',ng-model='img_path')
+                        .file-field.input-field.col.s4
+                          .btn.light-blue.accent-1
+                            span Audio
+                            input(type='file',file-model='audio')
+                          .file-path-wrapper
+                            input.file-path.validate(type='text',ng-model='audio_path')
+                        .file-field.input-field.col.s4
+                          .btn.light-blue.accent-1
+                            span Video
+                            input(type='file',file-model='video')
+                          .file-path-wrapper
+                            input.file-path.validate(type='text',ng-model='video_path')
+                    .row.font-title
+                        button.btn.waves-effect.waves-light.light-blue.accent-1(type='submit', name='action',ng-click='create()')
+                          | Guardar
+                          i.material-icons.right save
+
+    include add_user_place_button
+
+                    
+
+
+    script(src='https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js')
+    script.
+
+        $(document).ready(function() {
+          CKEDITOR.replace( 'textarea1' );
+          $('.datepicker').pickadate({
+              selectMonths: true, // Creates a dropdown to control month
+              selectYears: 15, // Creates a dropdown of 15 years to control year
+              //format: 'dd/mm/yyyy',
+              //formatSubmit: 'dd/mm/yyyy',
+            });
+        });
+        

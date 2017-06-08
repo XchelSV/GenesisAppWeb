@@ -86,3 +86,26 @@ var app = angular.module('Genesis',['ngRoute', 'ngCookies','angular-uuid','angul
             });
         }
     }]);
+
+    app.service('devotionalPut', ['$http', function ($http) {
+        this.uploadDevotionalToUrl = function(title,text,showDate,img,video,audio, uploadUrl){
+            var fd = new FormData();
+            fd.append('title', title);
+            fd.append('body',text);
+            fd.append('showDate',showDate);
+            fd.append('img',img);
+            fd.append('video',video);
+            fd.append('audio',audio);
+
+            $http.put(uploadUrl, fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            })
+            .success(function(data, status, headers, config){
+                window.location = "/devotional/list";
+            })
+            .error(function(){
+                alert('Error al Guardar');
+            });
+        }
+    }]);

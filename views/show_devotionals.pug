@@ -39,6 +39,8 @@ block content
                   i.material-icons navigation
                 // A large red button
                 if (type)
+                   a.btn-floating.btn-large.waves-effect.waves-light.light-blue.accent-1(href='/devotional/edit/'+devotional._id)
+                      i.material-icons edit
                    a.btn-floating.btn-large.waves-effect.waves-light.red(href='#modaldelete', id = devotional._id, ng-click='delete($event)')
                       i.material-icons delete_forever
                    

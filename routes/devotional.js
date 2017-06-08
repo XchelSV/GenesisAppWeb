@@ -19,6 +19,13 @@ router.get('/devotional/read/:_id', function(req, res, next) {
 	})
 });
 
+router.get('/devotional/edit/:_id', function(req, res, next) {
+	var id = req.params._id;
+	APIClient.get("http://localhost:4000/api/devotional/"+id, function (APIData, APIResponse) {
+	  res.render('edit_devotional',{devotional:APIData._id,type:req.session.type,login:req.session.login});
+	})
+});
+
 router.get('/devotional/delete/:_id', function(req, res, next) {
 	var id = req.params._id;
 
