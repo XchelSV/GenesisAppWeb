@@ -48,10 +48,12 @@ block content
                     
                     if (pray_register)
                       a.btn-floating.btn-large.waves-effect.waves-light.light-blue.accent-1.tooltipped(id=post._id ,data-position="top" data-delay="50" data-tooltip=post.pray4You.length , ng-click="pray($event)")
-                        i.material-icons airline_seat_flat
+                        .row(style='margin-top:6%')
+                          img.responsive-img(src='/images/pray.png')
                     else
                       a.btn-floating.btn-large.waves-effect.waves-light.black.tooltipped(id=post._id ,data-position="top" data-delay="50" data-tooltip=post.pray4You.length , ng-click="pray($event)")
-                        i.material-icons airline_seat_flat
+                        .row(style='margin-top:6%')
+                          img.responsive-img(src='/images/pray.png')
 
                     - var like_register = true
                     each like in post.like
