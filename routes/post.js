@@ -12,7 +12,7 @@ router.get('/social/list', function(req, res, next) {
 			})
 		}
 		else{
-			res.render('index', {posts: APIData, session: req.cookies.temporalSession,login:req.session.login});	
+			res.render('index', {posts: APIData, session: req.cookies.temporalSession,login:false});	
 
 		}
 		
