@@ -1,5 +1,8 @@
 app.controller('homeController',function  ($scope, $http, $cookies, fileUpload, uuid) {
-        
+    
+    $('#preloader').css("display", "none");  
+    $('#translate').css("display", "none");  
+
     $scope.session = function(){
         if($cookies.session != undefined){
             return true;

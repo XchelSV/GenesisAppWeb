@@ -48,9 +48,9 @@ block content
 
 
               .card-content
-                span.card-title.font-title= devotional.title
+                span(id='devotional_title'+devotional._id).card-title.font-title= devotional.title
                 if (devotional.body.length <= 200)
-                  p.font-text!= devotional.body
+                  p(id='devotional_body'+devotional._id).font-text!= devotional.body
                 else
                   p.font-text!= devotional.body.slice(0,200)+'...'
                 div(align='right')
@@ -61,7 +61,8 @@ block content
                     document.getElementById('moment-#{devotional._id}').textContent=now;   
 
 
-
     include delete_button
-                        
+
+    script.
+      var devotionals = !{JSON.stringify(devotionals)};                        
     

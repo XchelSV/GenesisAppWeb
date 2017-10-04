@@ -79,4 +79,52 @@ app.controller('indexController',function  ($scope, $http, $cookies, fileUpload,
         $scope.title = 'Eliminar Publicación';
     }
 
+    $scope.languaje = {};
+    $scope.languaje.from = 'es';
+    $scope.languaje.to = 'en';
+
+    $('#preloader').css("display", "none");
+    $('#translate').click(function(){
+
+        $('#preloader').css("display", "inline");
+        for (var i = 0; i < posts.length; i++) {
+
+            $.ajax({
+                url: "/post/translate",
+                type: "POST",
+                data: {
+                    "text": $('#body'+posts[i]._id).text(),
+                    "_id" : posts[i]._id,
+                    'from' : $scope.languaje.from,
+                    'to' : $scope.languaje.to
+                }
+            })  
+            .done(function(data, textStatus, jqXHR) {
+                //console.log("HTTP Request Succeeded: " + jqXHR.status);
+                $('#body'+data._id).text(data.text);
+            })
+            .fail(function(jqXHR, textStatus, errorThrown) {
+                console.log("HTTP Request Failed");
+            })
+            .always(function() {
+                
+            });
+            
+        }
+
+        if ($scope.languaje.from == 'es'){
+            $scope.languaje.from = 'en';
+            $scope.languaje.to = 'es';
+        }
+        else{
+            $scope.languaje.from = 'es';
+            $scope.languaje.to = 'en';   
+        }
+
+        setTimeout(function(){
+            $('#preloader').css("display", "none");
+        }, 6000);
+        
+    })
+
 });

@@ -17,6 +17,20 @@ block navbar
             a(href='/devotional/list') Devocionales
 
         ul.right.hide-on-med-and-down
+          li#preloader
+              
+                .preloader-wrapper.small.active(style='margin-top:40%')
+                  .spinner-layer.spinner-red-only
+                    .circle-clipper.left
+                      .circle
+                    .gap-patch
+                      .circle
+                    .circle-clipper.right
+                      .circle
+
+          li
+              a(href='javascript:void(0)')#translate 
+                i.material-icons translate
           if (login)
             li
               a(href='/logout') Cerrar Sesión            

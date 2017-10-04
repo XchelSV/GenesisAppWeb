@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var MsTranslator = require('mstranslator');
 
 var Client = require('node-rest-client').Client;
 var APIClient = new Client();
@@ -115,5 +116,23 @@ router.get('/post/delete/:post_id', function(req,res,next){
 	}
 
 });
+
+router.post('/post/translate', function(req,res,next){
+	var text = req.body.text;
+	var client = new MsTranslator({
+	  api_key: "d0c033cbc51d4ec1a09d2f3f27e13ba9"
+	}, true);
+
+	var params = {
+	  text: text
+	  , from: req.body.from
+	  , to: req.body.to
+	};
+
+	// Don't worry about access token, it will be auto-generated if needed.
+	client.translate(params, function(err, data) {
+	  res.send({text:data, _id:req.body._id});
+	});
+})
 
 module.exports = router;

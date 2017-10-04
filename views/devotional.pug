@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-    .parallax-container.animated.fadeIn
+    .parallax-container.animated.fadeIn(ng-controller='devotionalsController')
         .section
             .container
                 br
@@ -11,7 +11,7 @@ block content
                 br
                 br
                 br
-                h1.header.center.font-title.white-text= devotional.title
+                h1(id='devotional_title'+devotional._id).header.center.font-title.white-text= devotional.title
                 br
                 br
                 .row.center
@@ -30,7 +30,7 @@ block content
     .contanierx.animated.fadeIn(style='margin-top:4%')
         .row
             .col.s12.m10.push-m1#body
-                p.font-text!= devotional.body 
+                p(id='devotional_body'+devotional._id).font-text!= devotional.body 
         if (devotional.audio)
             .row.center
                 p.font-title Audio:
@@ -44,7 +44,9 @@ block content
                     source(src=server+'/api/devotional/video/'+devotional._id, type='video/mp4')
 
     script.
+        var devotional = !{JSON.stringify(devotional)};
         $(document).ready(function(){
+          $('#preloader').css("display", "none");
           $('.parallax').parallax();
 
           $('a').click(function(){

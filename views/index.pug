@@ -28,7 +28,7 @@ block content
       .col.s12.cards-container
         .margin
           script.
-            var posts = "#{posts}";
+            var posts = !{JSON.stringify(posts)};
 
           each post,index in posts
             .colx
@@ -78,7 +78,7 @@ block content
 
                   .card-content
                     span.card-title.font-title=post.userName
-                    p.font-text=post.body
+                    p(id='body'+post._id).font-text=post.body
                     div(align='right')
                       span.font-text(id='moment-'+post._id)
                     script.

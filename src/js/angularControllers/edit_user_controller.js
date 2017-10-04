@@ -1,5 +1,6 @@
 app.controller('editUserController',function  ($scope, $http, $cookies) {
         
+        $('#preloader').css("display", "none");
         $scope.session = function(){
             if($cookies.session != undefined){
                 return true;

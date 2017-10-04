@@ -1,5 +1,7 @@
 app.controller('addDevotionalController',function  ($scope, $http, $cookies, devotionalUpload) {
 
+	$('#preloader').css("display", "none");
+
 	$scope.create = function(){
 
 		var body = CKEDITOR.instances.textarea1.getData();

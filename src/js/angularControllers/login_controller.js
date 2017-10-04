@@ -1,5 +1,6 @@
 app.controller('loginController', function ($scope, $http, $cookies){
 
+	
     $scope.login = function(){
 
     	if($scope.email == null || $scope.pass == null){
