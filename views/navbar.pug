@@ -13,8 +13,9 @@ block navbar
             a(href='/place/list') Áreas de Trabajo
           li
             a(href='/user/list') Misioneros
-          li
-            a(href='/devotional/list') Devocionales
+          if (login === true)
+            li
+              a(href='/devotional/list') Devocionales
 
         ul.right.hide-on-med-and-down
           li#preloader
