@@ -22,14 +22,20 @@ html(ng-app='Genesis')
     script(type='text/javascript' , src = '/javascripts/angular-uuid.js')
     script(type='text/javascript', src='//cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js')
     script(src='//momentjs.com/downloads/moment-with-locales.min.js')
+    script(src='/javascripts/audio.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular-route.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular-cookies.js')
           
   body
 
-    //- var server = 'http://localhost:4000'
-    - var server = 'http://xchelsvz.me:4000'
+    - var server = 'http://localhost:4000'
+    //- var server = 'http://xchelsvz.me:4000'
 
     include navbar
 
     block content
+
+    script.
+        audiojs.events.ready(function() {
+            var as = audiojs.createAll();
+        });

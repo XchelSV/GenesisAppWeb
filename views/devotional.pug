@@ -34,10 +34,10 @@ block content
         if (devotional.audio)
             .row.center
                 p.font-title Audio:
-            .row.center
-                audio(controls='')
-                  source(src=server+'/api/devotional/audio/'+devotional._id, type='audio/mpeg')
-                  | Your browser does not support the audio element.
+            .row
+                .col.m4.offset-m4
+                    audio(src=server+'/api/devotional/audio/'+devotional._id, preload="auto")
+                  
         if (devotional.video)
             .row.center
                 video.responsive-video(controls='')
