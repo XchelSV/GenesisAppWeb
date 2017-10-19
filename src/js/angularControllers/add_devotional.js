@@ -1,6 +1,7 @@
 app.controller('addDevotionalController',function  ($scope, $http, $cookies, devotionalUpload) {
 
 	$('#preloader').css("display", "none");
+	$('#translate').css("display", "none");
 
 	$scope.create = function(){
 
@@ -17,6 +18,8 @@ app.controller('addDevotionalController',function  ($scope, $http, $cookies, dev
 })
 
 app.controller('editDevotionalController',function  ($scope, $http, $cookies, devotionalPut) {
+	$('#preloader').css("display", "none");
+	$('#translate').css("display", "none");
 	var pathArray = window.location.pathname.split( '/' );
 	$http.get('http://'+url+'/api/devotional/'+pathArray[3]).success(function (data, status, headers, config){ 
     	$scope.title = data.title;
