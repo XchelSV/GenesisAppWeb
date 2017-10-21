@@ -7,7 +7,7 @@ var APIClient = new Client();
 
 
 router.get('/devotional/list', function(req, res, next) {
-	if(req.session.token == true){
+	if(req.session.token){
 		APIClient.get("http://localhost:4000/api/devotional", function (APIData, APIResponse) {
 		  res.render('show_devotionals',{devotionals:APIData,type:req.session.type,login:req.session.login});
 		})
@@ -19,7 +19,7 @@ router.get('/devotional/list', function(req, res, next) {
 
 router.get('/devotional/read/:_id', function(req, res, next) {
 	var id = req.params._id;
-	if(req.session.token == true){
+	if(req.session.token){
 		APIClient.get("http://localhost:4000/api/devotional/"+id, function (APIData, APIResponse) {
 		  res.render('devotional',{devotional:APIData,type:req.session.type,login:req.session.login});
 		})
@@ -67,7 +67,7 @@ router.get('/devotional/create', function(req, res, next) {
 	res.render('add_devotional',{login:req.session.login});	
   }	
   else{
-  	res.sendStatus(404);
+  	res.redirect('/');
   }
 
 });
