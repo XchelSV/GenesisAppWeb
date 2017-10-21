@@ -15,6 +15,7 @@ var devotional = require('./routes/devotional');
 var place = require('./routes/place');
 var post = require('./routes/post');
 var user = require('./routes/user');
+var podcast = require('./routes/podcast');
 
 var app = express();
 var client = redis.createClient();
@@ -46,6 +47,7 @@ app.use('/', devotional);
 app.use('/', place);
 app.use('/', post);
 app.use('/', user);
+app.use('/', podcast);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
