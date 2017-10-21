@@ -1,7 +1,7 @@
 var app = angular.module('Genesis',['ngRoute', 'ngCookies','angular-uuid','angular-loading-bar','cfp.loadingBarInterceptor']);
     
-    //var url = 'localhost:4000';
-    var url = 'xchelsvz.me:4000';
+    var url = 'localhost:4000';
+    //var url = 'xchelsvz.me:4000';
     app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
         
         cfpLoadingBarProvider.includeSpinner = true;
@@ -103,6 +103,27 @@ var app = angular.module('Genesis',['ngRoute', 'ngCookies','angular-uuid','angul
             })
             .success(function(data, status, headers, config){
                 window.location = "/devotional/list";
+            })
+            .error(function(){
+                alert('Error al Guardar');
+            });
+        }
+    }]);
+
+    app.service('podcastUpload', ['$http', function ($http) {
+        this.uploadPodcastToUrl = function(title,text,showDate,audio, uploadUrl){
+            var fd = new FormData();
+            fd.append('title', title);
+            fd.append('body',text);
+            fd.append('showDate',showDate);
+            fd.append('audio',audio);
+
+            $http.post(uploadUrl, fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            })
+            .success(function(data, status, headers, config){
+                window.location = "/podcast/list";
             })
             .error(function(){
                 alert('Error al Guardar');
