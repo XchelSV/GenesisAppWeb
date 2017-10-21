@@ -1,0 +1,42 @@
+extends layout
+
+block content
+
+  style.
+    .audiojs{
+        width: 600px !important;
+        background: #5497a8 !important;
+        font-size: 16px !important;
+        font-family: 'Open Sans', sans-serif
+    }
+    .audiojs .play-pause{
+      width: 40px !important;
+    }
+
+    .audiojs .scrubber{
+      width: 400px !important;
+    }
+
+
+  include add_user_place_button
+  
+  .containerx(ng-controller='showPodcastController')
+    .row(style='margin-top:-1%', align='center')
+        .col.m6.s6.offset-m3.offset-s3
+          img.responsive-img(src='/images/si.png')
+    .row(style='margin-top:-2%')
+      each podcast in podcasts
+        .col.m6.s12
+          .card
+            .card-image
+              if (type === true) 
+                a.btn-large.btn-floating.halfway-fab.waves-effect.waves-light.red(href='#modaldelete', id = podcast._id, ng-click='delete($event)')
+                  i.material-icons delete
+            .card-content
+                span.card-title.activator.grey-text.text-darken-4
+                  | #{podcast.title}
+                p!=podcast.body
+                .row(align='center',style='margin-top:4%')
+                    audio(src=server+'/api/podcast/audio/'+podcast._id, preload="auto")
+
+    include delete_button
