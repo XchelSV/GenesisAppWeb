@@ -1,7 +1,7 @@
 var app = angular.module('Genesis',['ngRoute', 'ngCookies','angular-uuid','angular-loading-bar','cfp.loadingBarInterceptor']);
     
-    var url = 'localhost:4000';
-    //var url = 'xchelsvz.me:4000';
+    //var url = 'localhost:4000';
+    var url = 'xchelsvz.me:4000';
     app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
         
         cfpLoadingBarProvider.includeSpinner = true;
