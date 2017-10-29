@@ -12,6 +12,12 @@ router.get('/user/list', function(req, res, next) {
 	})
 });
 
+router.get('/user/list/confirmation', function(req, res, next) {
+  APIClient.get("http://localhost:4000/api/user", function (APIData, APIResponse) {
+    res.render('show_users',{users:APIData,type:req.session.type,login:req.session.login, confirmation:true});
+  })
+});
+
 router.get('/user/delete/:_id', function(req, res, next) {
 	var id = req.params._id;
 	APIClient.delete("http://localhost:4000/api/user/"+id+"/"+req.session.token, function (APIData2, APIResponse) {

@@ -79,7 +79,7 @@ var app = angular.module('Genesis',['ngRoute', 'ngCookies','angular-uuid','angul
                 headers: {'Content-Type': undefined}
             })
             .success(function(data, status, headers, config){
-                window.location = "/devotional/list";
+                Materialize.toast('Devocional Guardado con Éxito, Espera un Momento', 3000,'',function(){window.location = "/devotional/list";})
             })
             .error(function(){
                 alert('Error al Guardar');
@@ -102,7 +102,7 @@ var app = angular.module('Genesis',['ngRoute', 'ngCookies','angular-uuid','angul
                 headers: {'Content-Type': undefined}
             })
             .success(function(data, status, headers, config){
-                window.location = "/devotional/list";
+                Materialize.toast('Devocional Guardado con Éxito, Espera un Momento', 3000,'',function(){window.location = "/devotional/list";})
             })
             .error(function(){
                 alert('Error al Guardar');
@@ -123,7 +123,7 @@ var app = angular.module('Genesis',['ngRoute', 'ngCookies','angular-uuid','angul
                 headers: {'Content-Type': undefined}
             })
             .success(function(data, status, headers, config){
-                window.location = "/podcast/list";
+                Materialize.toast('Podcast Guardado con Éxito, Espera un Momento', 3000,'',function(){window.location = "/podcast/list";})
             })
             .error(function(){
                 alert('Error al Guardar');

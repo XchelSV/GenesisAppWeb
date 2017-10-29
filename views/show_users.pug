@@ -59,3 +59,8 @@ block content
 
     script.
       var users = !{JSON.stringify(users)};
+      var confirmation = "#{confirmation}";
+      
+      if (confirmation){
+        Materialize.toast('Misionero Guardado con Éxito!', 10000)
+      }
