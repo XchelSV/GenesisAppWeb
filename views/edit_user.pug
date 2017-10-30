@@ -18,7 +18,7 @@ block content
                           label(for='email') Correo Electrónico
                     .row
                         .input-field.col.s6
-                          input#birth.datepicker(type='date',name='birth',required,value=user.birthday)
+                          input#birth.datepicker(type='date',name='birth',required)
                           label(for='birth') Fecha de Nacimiento
                         .input-field.col.s6
                             select#select1(name='type',required)
@@ -65,6 +65,18 @@ block content
     
     script.
 
+      var type = "#{user.type}";
+      console.log(type);
+
+      if ( type === 'true'){
+        document.getElementById("select1").value= '1';
+      }
+      else{
+        document.getElementById("select1").value= '0';
+      }
+
+      document.getElementById("select2").value= "#{user.servicePlace}";
+
       $(document).ready(function() {
         $('#filled-inx').click(function(){
           if(document.getElementById("filled-inx").checked == false){
@@ -80,5 +92,12 @@ block content
             selectMonths: true, // Creates a dropdown to control month
             selectYears: 25// Creates a dropdown of 15 years to control year
           });
+
+        var birthday = "#{user.birthday}";
+        var date = new Date(birthday);
+        //date.setDate(date.getDate()+ 1);
+        var picker = $('#birth').pickadate('picker');
+        picker.set('select',date);
+
       });
                      
