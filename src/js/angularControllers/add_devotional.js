@@ -24,7 +24,9 @@ app.controller('editDevotionalController',function  ($scope, $http, $cookies, de
 	$http.get('http://'+url+'/api/devotional/'+pathArray[3]).success(function (data, status, headers, config){ 
     	$scope.title = data.title;
     	$scope.body = data.body;
-    	$scope.date = data.showDate;
+    	var picker = $('#date').pickadate('picker');
+    	var date = new Date(data.showDate);
+        picker.set('select',date);
     })
     .error(function (){
         alert('AJAX error in Devotionals');        
