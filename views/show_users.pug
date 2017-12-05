@@ -34,8 +34,10 @@ block content
                   // A container for floating buttons
                   .card-buttons
                     // A small amber button
-                    a.btn-floating.btn-large.waves-effect.waves-light.light-blue.accent-1
+                    //a.btn-floating.btn-large.waves-effect.waves-light.light-blue.accent-1
                       i.material-icons monetization_on
+                    a.btn-floating.btn-large.waves-effect.waves-light.light-blue.accent-1(id=user._id, ng-click='open_modal($event)')
+                      i.material-icons expand_more
                     // A large red button
                     if (type)
                       a.btn-floating.btn-large.waves-effect.waves-light.light-blue.accent-1(href='/user/edit/'+user._id)
@@ -49,7 +51,11 @@ block content
                       b
                        | Área de Trabajo: #{user.servicePlace}
                       br
-                      | #{user.biography}
+                      if (user.biography.length <= 200)
+                        p= user.biography
+                      else
+                        p= user.biography.slice(0,200)+'...'
+
 
 
           else if (type === true)
@@ -76,7 +82,10 @@ block content
                       b
                        | Área de Trabajo: #{user.servicePlace}
                       br
-                      | #{user.biography}
+                      if (user.biography.length <= 200)
+                        p= user.biography
+                      else
+                        p= user.biography.slice(0,200)+'...'
 
 
     else if (users.length == 1)
@@ -144,12 +153,25 @@ block content
         .row.animated.fadeIn(style='margin-top:8%')
           h5.font-text(align='center') Aún no tenemos misioneros en esta área, ¿Porqué no empiezas tú?
 
+    // Modal Structure
+    #modal1.modal.font-text
+        .modal-content
+          h4(style='margin-top:1%').center-align {{name}}
+          p(style='margin-top:4%') {{biography}}
+        .modal-footer
+          //a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Agree
+
     include delete_button
     include add_user_place_button
 
     script.
       var users = !{JSON.stringify(users)};
       var confirmation = "#{confirmation}";
+
+      $(document).ready(function(){
+        // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+      });
       
       if (confirmation){
         Materialize.toast('Misionero Guardado con Éxito!', 10000)

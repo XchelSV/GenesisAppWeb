@@ -63,4 +63,16 @@ app.controller('showUsersController', function ($scope,$http,$cookies){
             }, 6000);
             
         })
+
+    $scope.open_modal = function(e){
+        $('#modal1').modal('open');
+        var user = e.currentTarget.id;
+        for (var i = 0; i < users.length; i++) {
+            if(users[i]._id == user){
+                $scope.name = users[i].name;
+                $scope.biography = users[i].biography;
+                break;
+            }
+        }
+    }   
 });
