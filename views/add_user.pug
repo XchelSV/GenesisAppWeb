@@ -44,12 +44,15 @@ block content
                             input#filled-in-box.filled-in(type='checkbox', checked='checked',name='active')
                             label(for='filled-in-box') Activo
                     .row
-                        .file-field.input-field
+                        .file-field.input-field.col.s6
                           .btn.light-blue.accent-1
                             span Imágen de Perfil
                             input(type='file',name='photo',required)
                           .file-path-wrapper
                             input.file-path.validate(type='text')
+                        .input-field.col.s6
+                          input#url.validate(type='text',name='url')
+                          label(for='url') URL de Donaciones
 
                     .row
                         .input-field.col.s12

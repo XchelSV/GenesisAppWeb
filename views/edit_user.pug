@@ -40,6 +40,9 @@ block content
                       .input-field.col.s6
                             input#filled-inx.filled-in(type='checkbox',name='updateImg',ng-model='updimg')
                             label(for='filled-inx') Actualizar Foto de Perfil
+                      .input-field.col.s6
+                          input#url.validate(type='text',name='url',value=user.url)
+                          label(for='url') URL de Donaciones
                     .row(style='margin-top:4%')
                         .file-field.input-field(ng-show='updimg')
                           .btn.light-blue.accent-1
