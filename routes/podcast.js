@@ -16,9 +16,16 @@ router.get('/podcast/create', function(req, res, next) {
 
 
 router.get('/podcast/list', function(req, res, next) {
-	APIClient.get("http://localhost:4000/api/podcast", function (APIData, APIResponse) {
-		res.render('show_podcast',{podcasts:APIData,type:req.session.type,login:req.session.login});
-	})
+	if(req.session.type == true){
+		APIClient.get("http://localhost:4000/api/podcast/"+req.session.token, function (APIData, APIResponse) {
+			res.render('show_podcast',{podcasts:APIData,type:req.session.type,login:req.session.login});
+		})
+	}
+	else{
+		APIClient.get("http://localhost:4000/api/podcast", function (APIData, APIResponse) {
+			res.render('show_podcast',{podcasts:APIData,type:req.session.type,login:req.session.login});
+		})
+	}
 });
 
 router.get('/podcast/delete/:_id', function(req, res, next) {
