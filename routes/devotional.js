@@ -9,7 +9,7 @@ var APIClient = new Client();
 router.get('/devotional/list', function(req, res, next) {
 	if(req.session.token){
 		if(req.session.type == true){
-			APIClient.get("http://localhost:4000/api/devotional/"+req.session.token, function (APIData, APIResponse) {
+			APIClient.get("http://localhost:4000/api/devotional/admin/"+req.session.token, function (APIData, APIResponse) {
 			  res.render('show_devotionals',{devotionals:APIData,type:req.session.type,login:req.session.login});
 			})
 		}
